@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ["class"],
-    content: [],
+    content: [
+      "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
   theme: {
   	extend: {
   		borderRadius: {
@@ -49,7 +53,20 @@ module.exports = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			},
+  			// Ubuntu Aqua Brand Colors
+  			'aqua': {
+  				'primary': '#7371FC',
+  				'secondary': '#4ECDC4',
+  				'accent': '#FF6B6B',
+  				'success': '#67D1A3',
+  				'dark': '#1E1E24',
+  				'light': '#F7F9FB'
   			}
+  		},
+  		fontFamily: {
+  			'sans': ['Inter', 'system-ui', 'sans-serif'],
+  			'serif': ['Playfair Display', 'serif'],
   		}
   	}
   },

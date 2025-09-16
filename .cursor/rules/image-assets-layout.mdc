@@ -1,0 +1,198 @@
+---
+globs: *.tsx,*.ts,*.jsx,*.js
+description: Image asset analysis and layout optimization for Next.js projects
+---
+
+# Image Assets Layout Analysis and Optimization
+
+## Image Asset Organization
+
+### Public Folder Structure
+- Store all images in [public/images/](mdc:public/images/) directory
+- Use descriptive, kebab-case naming: `hero-banner.jpg`, `profile-avatar.png`
+- Organize by purpose: `hero/`, `gallery/`, `icons/`, `logos/`
+- Keep SVG icons in [public/](mdc:public/) root for direct access
+
+### Image Format Guidelines
+- **JPEG**: Photos, complex images with many colors
+- **PNG**: Images with transparency, simple graphics, logos
+- **WebP**: Modern format for better compression (with fallbacks)
+- **SVG**: Icons, simple graphics, scalable elements
+
+## Dimension-Based Layout Analysis
+
+### Aspect Ratio Categories
+
+#### Landscape Images (16:9, 4:3, 3:2)
+```tsx
+// Hero sections, banners, featured content
+<div className="relative w-full aspect-video overflow-hidden rounded-lg">
+  <Image
+    src="/images/hero-banner.jpg"
+    alt="Hero banner"
+    fill
+    className="object-cover"
+    priority
+  />
+</div>
+```
+
+#### Portrait Images (3:4, 2:3, 9:16)
+```tsx
+// Profile pictures, product shots, mobile-first content
+<div className="relative w-48 h-64 overflow-hidden rounded-full">
+  <Image
+    src="/images/profile-avatar.jpg"
+    alt="Profile picture"
+    fill
+    className="object-cover"
+  />
+</div>
+```
+
+#### Square Images (1:1)
+```tsx
+// Thumbnails, gallery items, social media previews
+<div className="relative w-32 h-32 overflow-hidden rounded-lg">
+  <Image
+    src="/images/thumbnail.jpg"
+    alt="Thumbnail"
+    fill
+    className="object-cover"
+  />
+</div>
+```
+
+### Responsive Layout Patterns
+
+#### Mobile-First Approach
+```tsx
+// Base mobile layout
+<div className="w-full h-48 sm:h-64 md:h-80 lg:h-96">
+  <Image
+    src="/images/responsive-banner.jpg"
+    alt="Responsive banner"
+    fill
+    className="object-cover"
+    sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
+  />
+</div>
+```
+
+#### Grid Layouts
+```tsx
+// Image gallery with consistent aspect ratios
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  {images.map((image) => (
+    <div key={image.id} className="relative aspect-square overflow-hidden rounded-lg">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        className="object-cover hover:scale-105 transition-transform duration-300"
+      />
+    </div>
+  ))}
+</div>
+```
+
+## Image Optimization Rules
+
+### Next.js Image Component Usage
+```tsx
+import Image from 'next/image'
+
+// Always use Next.js Image component for optimization
+<Image
+  src="/images/optimized-image.jpg"
+  alt="Descriptive alt text"
+  width={800}
+  height={600}
+  className="rounded-lg shadow-lg"
+  priority={isAboveFold}
+  placeholder="blur"
+  blurDataURL="data:image/jpeg;base64,..."
+/>
+```
+
+### Performance Considerations
+- Use `priority` prop for above-the-fold images
+- Implement `placeholder="blur"` with `blurDataURL` for better UX
+- Set appropriate `sizes` prop for responsive images
+- Use `fill` with relative positioning for flexible layouts
+
+### Accessibility Requirements
+- Always provide meaningful `alt` text
+- Use `aria-label` for decorative images: `alt=""`
+- Ensure sufficient color contrast for text overlays
+- Provide text alternatives for complex images
+
+## Layout Analysis Guidelines
+
+### When Adding New Images
+1. **Analyze dimensions**: Check width/height ratio
+2. **Determine purpose**: Hero, thumbnail, gallery, icon
+3. **Choose container**: Fixed size vs. responsive
+4. **Select object-fit**: `cover`, `contain`, `fill`
+5. **Apply responsive classes**: Mobile-first approach
+
+### Common Layout Patterns
+
+#### Hero Sections
+- Use `aspect-video` (16:9) for landscape hero images
+- Apply `object-cover` to maintain aspect ratio
+- Add overlay for text readability
+
+#### Card Components
+- Use `aspect-square` or `aspect-[4/3]` for consistency
+- Apply `object-cover` for uniform appearance
+- Add hover effects for interactivity
+
+#### Profile/Avatar Images
+- Use `aspect-square` with `rounded-full`
+- Apply `object-cover` to maintain circular shape
+- Set fixed dimensions for consistent sizing
+
+### Tailwind CSS Classes for Image Layouts
+
+```css
+/* Aspect ratios */
+.aspect-video    /* 16:9 */
+.aspect-square   /* 1:1 */
+.aspect-[4/3]    /* 4:3 */
+.aspect-[3/2]    /* 3:2 */
+
+/* Object fit */
+.object-cover    /* Fill container, maintain aspect ratio */
+.object-contain  /* Fit within container */
+.object-fill     /* Stretch to fill container */
+
+/* Responsive sizing */
+.w-full.h-48     /* Mobile: 192px height */
+.sm:h-64         /* Small: 256px height */
+.md:h-80         /* Medium: 320px height */
+.lg:h-96         /* Large: 384px height */
+```
+
+## Implementation Checklist
+
+When adding new image assets:
+
+- [ ] Place image in appropriate [public/images/](mdc:public/images/) subdirectory
+- [ ] Use descriptive, kebab-case filename
+- [ ] Analyze image dimensions and aspect ratio
+- [ ] Choose appropriate container layout pattern
+- [ ] Implement responsive design with Tailwind classes
+- [ ] Add proper alt text for accessibility
+- [ ] Use Next.js Image component for optimization
+- [ ] Test on different screen sizes
+- [ ] Verify loading performance and visual quality
+
+## Common Anti-Patterns to Avoid
+
+- Don't use `<img>` tags directly (use Next.js Image component)
+- Don't forget responsive sizing for mobile devices
+- Don't use fixed pixel dimensions without responsive alternatives
+- Don't skip alt text or use generic descriptions
+- Don't load large images without optimization
+- Don't use `object-fill` unless specifically needed (distorts images)

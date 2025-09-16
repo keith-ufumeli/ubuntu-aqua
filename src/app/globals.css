@@ -1,4 +1,16 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+/* Font loading optimization */
+@font-face {
+  font-family: 'Playfair Display';
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 
 @theme inline {
   --color-background: var(--background);
@@ -73,5 +85,54 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .progress-bar-95 {
+    width: 95%;
+  }
+  
+  .progress-bar-87 {
+    width: 87%;
+  }
+  
+  .progress-bar-92 {
+    width: 92%;
+  }
+
+  /* Typography utilities for consistent font application */
+  .heading-primary {
+    @apply font-serif text-4xl lg:text-5xl font-bold text-aqua-dark;
+  }
+  
+  .heading-secondary {
+    @apply font-serif text-2xl lg:text-3xl font-semibold text-aqua-dark;
+  }
+  
+  .heading-tertiary {
+    @apply font-serif text-xl lg:text-2xl font-semibold text-aqua-dark;
+  }
+  
+  .brand-text {
+    @apply font-serif font-bold text-aqua-dark;
+  }
+  
+  .body-text {
+    @apply font-sans text-gray-600 leading-relaxed;
+  }
+  
+  /* Additional typography utilities */
+  .text-large {
+    @apply font-serif text-lg lg:text-xl;
+  }
+  
+  .text-emphasis {
+    @apply font-serif font-semibold text-aqua-dark;
+  }
+  
+  /* Ensure all headings use Playfair Display */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
 }
