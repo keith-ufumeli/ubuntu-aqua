@@ -6,6 +6,12 @@
         "shadcn@latest",
         "mcp"
       ]
-    }
+    },
+    "Lunacy": {
+           "command": "C:\\Program Files\\WindowsApps\\Icons8LLC.Lunacy_11.6.0.0_x64__7g68zyg4rddyp\\Lunacy.App.Desktop\\Lunacy.exe",
+           "args": [
+               "-mcp"
+           ]
+       }
   }
 }
