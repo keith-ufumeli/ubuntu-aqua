@@ -65,8 +65,8 @@ module.exports = {
   			}
   		},
   		fontFamily: {
-  			'sans': ['Inter', 'system-ui', 'sans-serif'],
-  			'serif': ['Playfair Display', 'serif'],
+  			'sans': ['var(--font-inter)', 'system-ui', 'sans-serif'],
+  			'heading': ['var(--font-poppins)', 'system-ui', 'sans-serif'],
   		}
   	}
   },
