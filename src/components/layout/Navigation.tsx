@@ -29,16 +29,32 @@ export default function Navigation() {
   return (
     <>
       <motion.nav 
-        className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50"
+        className="fixed top-6 left-0 right-0 z-50 px-6"
         style={{ y, scale }}
         role="navigation" 
         aria-label="Main navigation"
       >
-        <motion.div 
-          className="relative flex items-center justify-center"
-          style={{ height }}
-        >
-          {/* Enhanced pill-shaped container */}
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Logo positioned on the left */}
+          <motion.div 
+            className="logo-chip"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="flex items-center space-x-2">
+              <Droplets className="h-6 w-6 text-primary" />
+              <motion.span 
+                className="font-heading text-lg font-bold text-foreground"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                Ubuntu Aqua
+              </motion.span>
+            </div>
+          </motion.div>
+
+          {/* Navigation Links centered horizontally */}
           <motion.div 
             className="glass px-8 py-4 rounded-full border transition-all duration-300"
             style={{ 
@@ -48,57 +64,34 @@ export default function Navigation() {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="flex items-center space-x-8">
-              {/* Logo with gradient chip */}
-              <motion.div 
-                className="logo-chip"
+            <div className="hidden md:flex items-center space-x-8">
+              <motion.a 
+                href="#solution" 
+                className="nav-link"
                 whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div className="flex items-center space-x-2">
-                  <Droplets className="h-6 w-6 text-primary" />
-                  <motion.span 
-                    className="font-heading text-lg font-bold text-foreground"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  >
-                    Ubuntu Aqua
-                  </motion.span>
-                </div>
-              </motion.div>
-
-              {/* Navigation Links with animated underline */}
-              <div className="hidden md:flex items-center space-x-8">
-                <motion.a 
-                  href="#solution" 
-                  className="nav-link"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Solution
-                </motion.a>
-                <motion.a 
-                  href="#how-it-works" 
-                  className="nav-link"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  How It Works
-                </motion.a>
-                <motion.a 
-                  href="#impact" 
-                  className="nav-link"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Impact
-                </motion.a>
-        
-              </div>
+                Solution
+              </motion.a>
+              <motion.a 
+                href="#how-it-works" 
+                className="nav-link"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                How It Works
+              </motion.a>
+              <motion.a 
+                href="#impact" 
+                className="nav-link"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Impact
+              </motion.a>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </motion.nav>
 
       {/* Mobile Menu FAB */}
