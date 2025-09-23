@@ -30,7 +30,7 @@ export default function Navigation() {
       role="navigation" 
       aria-label="Main navigation"
     >
-      <div className="relative">
+      <div className="relative flex items-center justify-center">
         {/* Pill-shaped container */}
         <motion.div 
           className={`
@@ -120,9 +120,9 @@ export default function Navigation() {
           </div>
         </motion.div>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu button - positioned outside the pill */}
         <motion.button
-          className="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-300"
+          className="md:hidden absolute -right-12 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-300"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           aria-label="Toggle mobile menu"

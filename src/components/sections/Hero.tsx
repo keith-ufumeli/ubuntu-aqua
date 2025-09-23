@@ -3,8 +3,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Shield, TrendingUp } from 'lucide-react';
+
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -42,7 +41,7 @@ export default function Hero() {
     >
       {/* Image Section - Upper 2/3 */}
       <div 
-        className="relative h-[70vh] rounded-b-[30px] overflow-hidden"
+        className="relative h-[66vh] rounded-b-[30px] overflow-hidden"
         style={{
           backgroundImage: 'url(/images/victoria-falls-1.jpg)',
           backgroundSize: 'cover',
@@ -55,14 +54,14 @@ export default function Hero() {
       </div>
 
       {/* Text Section - Lower 1/3 */}
-      <div className="relative bg-background h-[30vh] flex items-center pb-16">
+      <div className="relative bg-background h-[34vh] flex items-center pb-16">
         <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center h-full">
             {/* Left side - Main heading */}
             <div className="space-y-4">
               <motion.h1 
                 id="hero-heading"
-                className="hero-title font-heading text-5xl lg:text-[3.25rem] font-medium text-foreground leading-tight"
+                className="hero-title font-heading text-4xl md:text-5xl lg:text-[3.25rem] font-medium text-foreground leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
