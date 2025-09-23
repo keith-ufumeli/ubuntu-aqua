@@ -37,19 +37,19 @@ export default function Stats() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div className="stat-number text-4xl font-bold mb-2" data-target="2.1M">0</div>
+            <div className="stat-number text-4xl font-heading font-bold mb-2" data-target="2.1M">0</div>
             <div className="text-primary-foreground/80 font-body">People at Risk</div>
           </div>
           <div>
-            <div className="stat-number text-4xl font-bold mb-2" data-target="95%">0</div>
+            <div className="stat-number text-4xl font-heading font-bold mb-2" data-target="95%">0</div>
             <div className="text-primary-foreground/80 font-body">Prediction Accuracy</div>
           </div>
           <div>
-            <div className="stat-number text-4xl font-bold mb-2" data-target="72h">0</div>
+            <div className="stat-number text-4xl font-heading font-bold mb-2" data-target="72h">0</div>
             <div className="text-primary-foreground/80 font-body">Early Warning</div>
           </div>
           <div>
-            <div className="stat-number text-4xl font-bold mb-2" data-target="150+">0</div>
+            <div className="stat-number text-4xl font-heading font-bold mb-2" data-target="150+">0</div>
             <div className="text-primary-foreground/80 font-body">Communities</div>
           </div>
         </div>
