@@ -107,15 +107,48 @@
 @layer components {
   /* Glassmorphism utilities */
   .glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+    @apply bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
   }
   
   .glass-dark {
-    @apply bg-gray-900/70 backdrop-blur-md border border-gray-700/20 shadow-lg;
+    @apply bg-gray-900/40 backdrop-blur-xl border border-gray-700/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
   }
 
   .glass-card {
     @apply bg-white/60 backdrop-blur-sm border border-white/20 shadow-md rounded-xl;
+  }
+
+  /* Navbar specific styles */
+  .nav-link {
+    @apply relative text-base md:text-lg font-semibold font-heading transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 ease-out;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .logo-chip {
+    @apply relative px-4 py-2 rounded-full bg-gradient-to-r from-white/50 to-white/30 backdrop-blur-lg;
+  }
+
+  .cta-button {
+    @apply relative overflow-hidden bg-gradient-to-r from-primary to-[#F5A91A] hover:from-[#F5A91A] hover:to-primary transition-all duration-500;
+  }
+
+  .cta-button::before {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-primary to-[#F5A91A] opacity-0 transition-opacity duration-500;
+  }
+
+  .cta-button:hover::before {
+    @apply opacity-100;
+  }
+
+  .nav-mobile-fab {
+    @apply fixed bottom-6 right-6 w-14 h-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center transition-all duration-300 md:hidden;
   }
 
   /* Progress bars */

@@ -80,9 +80,9 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                Predict and prevent drinking water violations before they happen. 
-                Our AI model helps health officials, NGOs, and communities make 
-                data-driven decisions to protect public health.
+                Our AI <span className="text-primary">predicts</span> water safety risks before they become violations. This helps 
+                health officials, NGOs, and communities take action early — protecting lives 
+                and building trust in clean water.
               </motion.p>
 
               {/* Scroll Button - Bottom right of this column */}
