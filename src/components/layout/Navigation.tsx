@@ -38,13 +38,17 @@ export default function Navigation() {
           {/* Logo positioned on the left */}
           <motion.div 
             className="logo-chip"
+            style={{ 
+              backgroundColor: `rgba(255, 255, 255, ${isScrolled ? 0.9 : 0.8})`,
+              backdropFilter: 'blur(16px)'
+            }}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
             <div className="flex items-center space-x-2">
               <Droplets className="h-6 w-6 text-primary" />
               <motion.span 
-                className="font-heading text-lg font-bold text-foreground"
+                className="font-heading text-lg font-bold text-foreground drop-shadow-sm"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
