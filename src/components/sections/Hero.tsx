@@ -42,7 +42,7 @@ export default function Hero() {
     >
       {/* Image Section - Upper 2/3 */}
       <div 
-        className="relative h-[66vh] rounded-b-[30px] overflow-hidden"
+        className="relative h-[70vh] rounded-b-[30px] overflow-hidden"
         style={{
           backgroundImage: 'url(/images/victoria-falls-1.jpg)',
           backgroundSize: 'cover',
@@ -55,14 +55,14 @@ export default function Hero() {
       </div>
 
       {/* Text Section - Lower 1/3 */}
-      <div className="relative bg-background h-[34vh] flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative bg-background h-[30vh] flex items-center pb-16">
+        <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center h-full">
             {/* Left side - Main heading */}
             <div className="space-y-4">
               <motion.h1 
                 id="hero-heading"
-                className="hero-title font-heading text-4xl lg:text-5xl font-medium text-foreground leading-tight"
+                className="hero-title font-heading text-5xl lg:text-[3.25rem] font-medium text-foreground leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -73,8 +73,8 @@ export default function Hero() {
               </motion.h1>
             </div>
 
-            {/* Right side - Description and CTA */}
-            <div className="space-y-6">
+            {/* Right side - Description and Scroll Button */}
+            <div className="space-y-6 flex flex-col justify-between h-full">
               <motion.p 
                 className="hero-subtitle text-lg text-foreground/80 leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
@@ -86,54 +86,39 @@ export default function Hero() {
                 data-driven decisions to protect public health.
               </motion.p>
 
-              {/* <motion.div 
-                className="hero-cta flex flex-col sm:flex-row gap-4"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.6, ease: [0.68, -0.55, 0.265, 1.55] }}
+              {/* Scroll Button - Bottom right of this column */}
+              <motion.div 
+                className="flex justify-end"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.2 }}
               >
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-                  See How It Works
-                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                </Button>
-                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-                  Download Whitepaper
-                </Button>
-              </motion.div> */}
+                <button 
+                  className="w-14 h-12 bg-primary hover:bg-primary/90 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg"
+                  onClick={() => {
+                    const nextSection = document.getElementById('stats-section');
+                    nextSection?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  aria-label="Scroll to next section"
+                >
+                  <svg 
+                    className="w-6 h-6 text-secondary" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={3} 
+                      d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+                    />
+                  </svg>
+                </button>
+              </motion.div>
             </div>
           </div>
         </div>
-
-        {/* Scroll Button - Bottom right */}
-        <motion.div 
-          className="absolute bottom-8 right-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-        >
-          <button 
-            className="w-14 h-12 bg-primary hover:bg-primary/90 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg"
-            onClick={() => {
-              const nextSection = document.getElementById('stats-section');
-              nextSection?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            aria-label="Scroll to next section"
-          >
-            <svg 
-              className="w-6 h-6 text-secondary" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={3} 
-                d="M19 14l-7 7m0 0l-7-7m7 7V3" 
-              />
-            </svg>
-          </button>
-        </motion.div>
       </div>
     </section>
   );
