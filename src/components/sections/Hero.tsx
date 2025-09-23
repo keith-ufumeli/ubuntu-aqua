@@ -76,7 +76,7 @@ export default function Hero() {
             {/* Right side - Description and Scroll Button */}
             <div className="space-y-6 flex flex-col justify-between h-full">
               <motion.p 
-                className="hero-subtitle text-lg text-foreground/80 leading-relaxed"
+                className="hero-subtitle text-lg body-text"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}

@@ -21,15 +21,15 @@ export default function Footer() {
                 Ubuntu Aqua
               </motion.span>
             </div>
-            <p className="text-gray-300 mb-6 max-w-md">
+            <p className="text-gray-300 mb-6 max-w-md font-body">
               AI-powered water safety predictions for Zimbabwe. 
               Protecting communities through early warning systems and data-driven insights.
             </p>
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+              <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700 font-body">
                 Contact Us
               </Button>
-              <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+              <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700 font-body">
                 Privacy Policy
               </Button>
             </div>
@@ -37,7 +37,7 @@ export default function Footer() {
           
           <div>
             <h3 className="font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2 text-gray-300">
+            <ul className="space-y-2 text-gray-300 font-body">
               <li><a href="#" className="hover:text-white transition-colors">Research Papers</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
               <li><a href="#" className="hover:text-white transition-colors">API Documentation</a></li>
@@ -47,7 +47,7 @@ export default function Footer() {
           
           <div>
             <h3 className="font-semibold mb-4">Partners</h3>
-            <ul className="space-y-2 text-gray-300">
+            <ul className="space-y-2 text-gray-300 font-body">
               <li><a href="#" className="hover:text-white transition-colors">Ministry of Health</a></li>
               <li><a href="#" className="hover:text-white transition-colors">UNICEF Zimbabwe</a></li>
               <li><a href="#" className="hover:text-white transition-colors">WHO</a></li>
@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Ubuntu Aqua. All rights reserved. Built with accessibility in mind.</p>
+          <p className="font-body">&copy; 2024 Ubuntu Aqua. All rights reserved. Built with accessibility in mind.</p>
         </div>
       </div>
     </footer>

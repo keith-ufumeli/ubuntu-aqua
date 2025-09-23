@@ -20,7 +20,7 @@ export default function Solution() {
                 <CheckCircle className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">Early Warning System</h3>
-                  <p className="text-gray-600">Get alerts up to 72 hours before contamination events</p>
+                  <p className="text-gray-600 font-body">Get alerts up to 72 hours before contamination events</p>
                 </div>
               </div>
               
@@ -28,7 +28,7 @@ export default function Solution() {
                 <CheckCircle className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">Data-Driven Insights</h3>
-                  <p className="text-gray-600">Make informed decisions with comprehensive risk analysis</p>
+                  <p className="text-gray-600 font-body">Make informed decisions with comprehensive risk analysis</p>
                 </div>
               </div>
               
@@ -36,7 +36,7 @@ export default function Solution() {
                 <CheckCircle className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">Scalable Technology</h3>
-                  <p className="text-gray-600">Works across urban and rural communities throughout Zimbabwe</p>
+                  <p className="text-gray-600 font-body">Works across urban and rural communities throughout Zimbabwe</p>
                 </div>
               </div>
             </div>
@@ -48,19 +48,19 @@ export default function Solution() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold">1</div>
-                  <span className="text-gray-700">Collect environmental and water quality data</span>
+                  <span className="text-gray-700 font-body">Collect environmental and water quality data</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold">2</div>
-                  <span className="text-gray-700">Analyze patterns using machine learning models</span>
+                  <span className="text-gray-700 font-body">Analyze patterns using machine learning models</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold">3</div>
-                  <span className="text-gray-700">Generate risk predictions and recommendations</span>
+                  <span className="text-gray-700 font-body">Generate risk predictions and recommendations</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold">4</div>
-                  <span className="text-gray-700">Deliver actionable insights to stakeholders</span>
+                  <span className="text-gray-700 font-body">Deliver actionable insights to stakeholders</span>
                 </div>
               </div>
             </div>

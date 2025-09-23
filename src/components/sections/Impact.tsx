@@ -21,11 +21,11 @@ export default function Impact() {
                 <Users className="h-6 w-6" />
               </div>
               <h3 className="heading-secondary mb-4">For Health Officials</h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-6 font-body">
                 Get early warnings about potential water contamination events, 
                 enabling proactive public health interventions and resource allocation.
               </p>
-              <ul className="space-y-2 text-sm text-gray-600">
+              <ul className="space-y-2 text-sm text-gray-600 font-body">
                 <li>• 72-hour advance warning system</li>
                 <li>• Risk assessment dashboards</li>
                 <li>• Automated alert notifications</li>
@@ -39,11 +39,11 @@ export default function Impact() {
                 <Heart className="h-6 w-6" />
               </div>
               <h3 className="heading-secondary mb-4">For NGOs & Aid Organizations</h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-6 font-body">
                 Access comprehensive water safety data to prioritize interventions 
                 and demonstrate impact to donors and stakeholders.
               </p>
-              <ul className="space-y-2 text-sm text-gray-600">
+              <ul className="space-y-2 text-sm text-gray-600 font-body">
                 <li>• Community risk mapping</li>
                 <li>• Impact measurement tools</li>
                 <li>• Donor reporting dashboards</li>
@@ -57,11 +57,11 @@ export default function Impact() {
                 <Shield className="h-6 w-6" />
               </div>
               <h3 className="heading-secondary mb-4">For Community Leaders</h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-6 font-body">
                 Empower local leaders with actionable insights to protect their 
                 communities and make informed decisions about water safety.
               </p>
-              <ul className="space-y-2 text-sm text-gray-600">
+              <ul className="space-y-2 text-sm text-gray-600 font-body">
                 <li>• Local risk assessments</li>
                 <li>• Community alert systems</li>
                 <li>• Educational resources</li>

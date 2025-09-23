@@ -57,7 +57,7 @@ export default function HowItWorks() {
                   <Globe className="h-8 w-8" />
                 </div>
                 <h3 className="heading-tertiary mb-4">Data Collection</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-body">
                   Gather environmental data, water quality metrics, and historical patterns 
                   from multiple sources across Zimbabwe.
                 </p>
@@ -76,7 +76,7 @@ export default function HowItWorks() {
                   <Zap className="h-8 w-8" />
                 </div>
                 <h3 className="heading-tertiary mb-4">AI Analysis</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-body">
                   Advanced machine learning models analyze patterns and identify 
                   early warning signals for potential contamination events.
                 </p>
@@ -95,7 +95,7 @@ export default function HowItWorks() {
                   <TrendingUp className="h-8 w-8" />
                 </div>
                 <h3 className="heading-tertiary mb-4">Actionable Insights</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-body">
                   Generate clear, actionable recommendations for health officials 
                   and community leaders to prevent contamination.
                 </p>
@@ -114,7 +114,7 @@ export default function HowItWorks() {
                   <Shield className="h-8 w-8" />
                 </div>
                 <h3 className="heading-tertiary mb-4">Preventative Action</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-body">
                   Enable proactive measures to protect communities before 
                   water contamination becomes a public health crisis.
                 </p>

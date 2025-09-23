@@ -63,7 +63,7 @@ export default function Navigation() {
             <div className="hidden md:flex items-center space-x-6">
               <motion.a 
                 href="#solution" 
-                className={`transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full px-3 py-1 ${
+                className={`font-heading transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full px-3 py-1 ${
                   isScrolled 
                     ? 'text-foreground hover:text-primary' 
                     : 'text-foreground/90 hover:text-foreground'
@@ -75,7 +75,7 @@ export default function Navigation() {
               </motion.a>
               <motion.a 
                 href="#how-it-works" 
-                className={`transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full px-3 py-1 ${
+                className={`font-heading transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full px-3 py-1 ${
                   isScrolled 
                     ? 'text-foreground hover:text-primary' 
                     : 'text-foreground/90 hover:text-foreground'
@@ -87,7 +87,7 @@ export default function Navigation() {
               </motion.a>
               <motion.a 
                 href="#impact" 
-                className={`transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full px-3 py-1 ${
+                className={`font-heading transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full px-3 py-1 ${
                   isScrolled 
                     ? 'text-foreground hover:text-primary' 
                     : 'text-foreground/90 hover:text-foreground'
@@ -106,7 +106,7 @@ export default function Navigation() {
                 <Button 
                   size="sm" 
                   className={`
-                    transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+                    font-heading transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
                     ${isScrolled 
                       ? 'bg-primary hover:bg-primary/90 text-primary-foreground' 
                       : 'bg-primary hover:bg-white/30 text-white border border-white/30'

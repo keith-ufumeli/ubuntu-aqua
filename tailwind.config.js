@@ -95,10 +95,11 @@ module.exports = {
 				'950': '#5a3d28'
 			}
   		},
-  		fontFamily: {
-  			'sans': ['var(--font-inter)', 'system-ui', 'sans-serif'],
-  			'heading': ['var(--font-poppins)', 'system-ui', 'sans-serif'],
-  		}
+		fontFamily: {
+			'sans': ['Chillax', 'var(--font-inter)', 'system-ui', 'sans-serif'],
+			'body': ['Chillax', 'var(--font-inter)', 'system-ui', 'sans-serif'],
+			'heading': ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

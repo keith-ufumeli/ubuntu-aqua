@@ -21,7 +21,7 @@ export default function Problem() {
             <CardContent className="p-6">
               <AlertTriangle className="h-12 w-12 text-accent mb-4" />
               <h3 className="heading-tertiary mb-3">Reactive Monitoring</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 font-body">
                 Current systems only detect contamination after it has already affected communities, 
                 leading to preventable health crises.
               </p>
@@ -32,7 +32,7 @@ export default function Problem() {
             <CardContent className="p-6">
               <Users className="h-12 w-12 text-accent mb-4" />
               <h3 className="heading-tertiary mb-3">Limited Resources</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 font-body">
                 Health officials lack the tools and data needed to make proactive decisions 
                 about water safety across vast regions.
               </p>
@@ -43,7 +43,7 @@ export default function Problem() {
             <CardContent className="p-6">
               <MapPin className="h-12 w-12 text-accent mb-4" />
               <h3 className="heading-tertiary mb-3">Geographic Challenges</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 font-body">
                 Remote communities often lack access to real-time water quality monitoring, 
                 putting vulnerable populations at greater risk.
               </p>

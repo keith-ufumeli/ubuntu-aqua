@@ -38,19 +38,19 @@ export default function Stats() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
             <div className="stat-number text-4xl font-bold mb-2" data-target="2.1M">0</div>
-            <div className="text-primary-foreground/80">People at Risk</div>
+            <div className="text-primary-foreground/80 font-body">People at Risk</div>
           </div>
           <div>
             <div className="stat-number text-4xl font-bold mb-2" data-target="95%">0</div>
-            <div className="text-primary-foreground/80">Prediction Accuracy</div>
+            <div className="text-primary-foreground/80 font-body">Prediction Accuracy</div>
           </div>
           <div>
             <div className="stat-number text-4xl font-bold mb-2" data-target="72h">0</div>
-            <div className="text-primary-foreground/80">Early Warning</div>
+            <div className="text-primary-foreground/80 font-body">Early Warning</div>
           </div>
           <div>
             <div className="stat-number text-4xl font-bold mb-2" data-target="150+">0</div>
-            <div className="text-primary-foreground/80">Communities</div>
+            <div className="text-primary-foreground/80 font-body">Communities</div>
           </div>
         </div>
       </div>

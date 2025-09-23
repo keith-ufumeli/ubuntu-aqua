@@ -8,7 +8,7 @@ export default function CTA() {
         <h2 className="heading-primary mb-6 text-white">
           Ready to Transform Water Safety?
         </h2>
-        <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+        <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto font-body">
           Join us in protecting communities across Zimbabwe with AI-powered 
           water safety predictions. Request a demo to see how Ubuntu Aqua 
           can work for your organization.

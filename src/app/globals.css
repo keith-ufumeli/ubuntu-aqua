@@ -9,6 +9,17 @@
   font-display: swap;
 }
 
+/* Chillax font faces */
+@font-face {
+  font-family: 'Chillax';
+  src: url('/Fonts/WEB/fonts/Chillax-Variable.woff2') format('woff2'),
+       url('/Fonts/WEB/fonts/Chillax-Variable.woff') format('woff'),
+       url('/Fonts/WEB/fonts/Chillax-Variable.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -138,7 +149,7 @@
   }
   
   .body-text {
-    @apply font-sans text-foreground/80 leading-relaxed;
+    @apply font-body text-foreground/80 leading-relaxed;
   }
   
   /* Additional typography utilities */
