@@ -39,9 +39,9 @@ export default function Hero() {
       className="relative min-h-screen "
       aria-labelledby="hero-heading"
     >
-      {/* Image Section - Upper 2/3 */}
+      {/* Image Section - Upper portion */}
       <div 
-        className="relative h-[66vh] rounded-b-[30px] overflow-hidden"
+        className="relative h-[50vh] md:h-[66vh] rounded-b-[30px] overflow-hidden"
         style={{
           backgroundImage: 'url(/images/victoria-falls-1.jpg)',
           backgroundSize: 'cover',
@@ -53,15 +53,15 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
-      {/* Text Section - Lower 1/3 */}
-      <div className="relative bg-background h-[34vh] flex items-center pb-16">
-        <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center h-full">
+      {/* Text Section - Lower portion */}
+      <div className="relative bg-background min-h-[50vh] md:h-[34vh] flex items-start md:items-center py-8 md:pt-6 lg:pt-1 lg:pb-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 h-full">
             {/* Left side - Main heading */}
-            <div className="space-y-4">
+            <div className="space-y-4 text-center lg:text-left">
               <motion.h1 
                 id="hero-heading"
-                className="hero-title font-heading text-4xl md:text-5xl lg:text-[3.25rem] font-medium text-foreground leading-tight"
+                className="hero-title font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-medium text-foreground leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -73,9 +73,9 @@ export default function Hero() {
             </div>
 
             {/* Right side - Description and Scroll Button */}
-            <div className="space-y-6 flex flex-col justify-between h-full">
+            <div className="flex flex-col justify-between space-y-8 md:space-y-6 lg:space-y-10">
               <motion.p 
-                className="hero-subtitle text-lg body-text"
+                className="hero-subtitle text-base sm:text-lg body-text text-center lg:text-left"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -87,7 +87,7 @@ export default function Hero() {
 
               {/* Scroll Button - Bottom right of this column */}
               <motion.div 
-                className="flex justify-end"
+                className="flex justify-center lg:justify-end"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.2 }}
