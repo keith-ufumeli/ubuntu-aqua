@@ -54,15 +54,46 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-  			// Ubuntu Aqua Brand Colors
-  			'aqua': {
-  				'primary': '#7371FC',
-  				'secondary': '#4ECDC4',
-  				'accent': '#FF6B6B',
-  				'success': '#67D1A3',
-  				'dark': '#1E1E24',
-  				'light': '#F7F9FB'
-  			}
+			// New Brand Colors: Gamboge, Licorice, Antique White
+			'gamboge': {
+				'50': '#fef7e6',
+				'100': '#fdecc2',
+				'200': '#fbd584',
+				'300': '#f8c145',
+				'400': '#f5a91a',
+				'500': '#E49B0F', // Main gamboge
+				'600': '#c77d0a',
+				'700': '#a55f0b',
+				'800': '#864b0f',
+				'900': '#6f3e10',
+				'950': '#3f1f05'
+			},
+			'licorice': {
+				'50': '#f6f6f6',
+				'100': '#e7e7e7',
+				'200': '#d1d1d1',
+				'300': '#b0b0b0',
+				'400': '#888888',
+				'500': '#6d6d6d',
+				'600': '#5d5d5d',
+				'700': '#4f4f4f',
+				'800': '#454545',
+				'900': '#3d3d3d',
+				'950': '#1A1A1A' // Main licorice
+			},
+			'antique-white': {
+				'50': '#fefdfb',
+				'100': '#fdf9f2',
+				'200': '#faf2e6',
+				'300': '#f6e8d1',
+				'400': '#f0d9b5',
+				'500': '#FAEBD7', // Main antique white
+				'600': '#e6c49f',
+				'700': '#d4a574',
+				'800': '#c08a5a',
+				'900': '#a06f4a',
+				'950': '#5a3d28'
+			}
   		},
   		fontFamily: {
   			'sans': ['var(--font-inter)', 'system-ui', 'sans-serif'],

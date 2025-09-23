@@ -17,9 +17,9 @@ export default function Problem() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="border-l-4 border-aqua-accent hover:shadow-lg transition-shadow">
+          <Card className="border-l-4 border-accent hover:shadow-lg transition-shadow">
             <CardContent className="p-6">
-              <AlertTriangle className="h-12 w-12 text-aqua-accent mb-4" />
+              <AlertTriangle className="h-12 w-12 text-accent mb-4" />
               <h3 className="heading-tertiary mb-3">Reactive Monitoring</h3>
               <p className="text-gray-600">
                 Current systems only detect contamination after it has already affected communities, 
@@ -28,9 +28,9 @@ export default function Problem() {
             </CardContent>
           </Card>
 
-          <Card className="border-l-4 border-aqua-accent hover:shadow-lg transition-shadow">
+          <Card className="border-l-4 border-accent hover:shadow-lg transition-shadow">
             <CardContent className="p-6">
-              <Users className="h-12 w-12 text-aqua-accent mb-4" />
+              <Users className="h-12 w-12 text-accent mb-4" />
               <h3 className="heading-tertiary mb-3">Limited Resources</h3>
               <p className="text-gray-600">
                 Health officials lack the tools and data needed to make proactive decisions 
@@ -39,9 +39,9 @@ export default function Problem() {
             </CardContent>
           </Card>
 
-          <Card className="border-l-4 border-aqua-accent hover:shadow-lg transition-shadow">
+          <Card className="border-l-4 border-accent hover:shadow-lg transition-shadow">
             <CardContent className="p-6">
-              <MapPin className="h-12 w-12 text-aqua-accent mb-4" />
+              <MapPin className="h-12 w-12 text-accent mb-4" />
               <h3 className="heading-tertiary mb-3">Geographic Challenges</h3>
               <p className="text-gray-600">
                 Remote communities often lack access to real-time water quality monitoring, 

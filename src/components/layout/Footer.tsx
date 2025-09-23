@@ -6,12 +6,12 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="bg-aqua-dark text-white py-16">
+    <footer className="bg-secondary text-secondary-foreground py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <Droplets className="h-8 w-8 text-aqua-primary" />
+              <Droplets className="h-8 w-8 text-primary" />
               <motion.span 
                 className="brand-text text-2xl text-white"
                 initial={{ opacity: 0, y: 50 }}

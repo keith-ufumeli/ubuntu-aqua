@@ -53,7 +53,7 @@ export default function HowItWorks() {
           >
             <Card className="h-full hover:shadow-lg transition-shadow">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-aqua-primary text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-6">
                   <Globe className="h-8 w-8" />
                 </div>
                 <h3 className="heading-tertiary mb-4">Data Collection</h3>
@@ -72,7 +72,7 @@ export default function HowItWorks() {
           >
             <Card className="h-full hover:shadow-lg transition-shadow">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-aqua-secondary text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-secondary text-secondary-foreground rounded-full flex items-center justify-center mx-auto mb-6">
                   <Zap className="h-8 w-8" />
                 </div>
                 <h3 className="heading-tertiary mb-4">AI Analysis</h3>
@@ -91,7 +91,7 @@ export default function HowItWorks() {
           >
             <Card className="h-full hover:shadow-lg transition-shadow">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-aqua-success text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-accent text-accent-foreground rounded-full flex items-center justify-center mx-auto mb-6">
                   <TrendingUp className="h-8 w-8" />
                 </div>
                 <h3 className="heading-tertiary mb-4">Actionable Insights</h3>
@@ -110,7 +110,7 @@ export default function HowItWorks() {
           >
             <Card className="h-full hover:shadow-lg transition-shadow">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-aqua-accent text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-6">
                   <Shield className="h-8 w-8" />
                 </div>
                 <h3 className="heading-tertiary mb-4">Preventative Action</h3>
