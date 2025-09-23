@@ -92,19 +92,42 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.2 }}
               >
-                <button 
+                <motion.button 
                   className="w-14 h-12 bg-primary hover:bg-primary/90 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg"
                   onClick={() => {
                     const nextSection = document.getElementById('stats-section');
                     nextSection?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   aria-label="Scroll to next section"
+                  animate={{ 
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 2
+                  }}
+                  whileHover={{ 
+                    scale: 1.1,
+                    y: 0
+                  }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <svg 
+                  <motion.svg 
                     className="w-6 h-6 text-secondary" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
+                    animate={{ 
+                      y: [0, 2, 0],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 2.2
+                    }}
                   >
                     <path 
                       strokeLinecap="round" 
@@ -112,8 +135,8 @@ export default function Hero() {
                       strokeWidth={3} 
                       d="M19 14l-7 7m0 0l-7-7m7 7V3" 
                     />
-                  </svg>
-                </button>
+                  </motion.svg>
+                </motion.button>
               </motion.div>
             </div>
           </div>
