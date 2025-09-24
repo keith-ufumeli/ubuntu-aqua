@@ -1,17 +1,54 @@
+'use client';
+
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Problem() {
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!imageRef.current) return;
+
+    // Create parallax effect for the image
+    gsap.to(imageRef.current, {
+      yPercent: -50,
+      ease: "none",
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
     <section className="relative bg-background">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* Left side - Image and Quote */}
-        <div className="relative lg:h-[900px] h-[50vh]">
-          <Image
-            src="/images/water-flowing-from-a-tap.jpg"
-            alt="Water crisis in Zimbabwe"
-            fill
-            className="object-cover"
-          />
+        <div className="relative lg:h-[900px] h-[50vh] overflow-hidden">
+          <div 
+            ref={imageRef}
+            className="absolute inset-0 w-full h-[120%] -top-[10%]"
+          >
+            <Image
+              src="/images/water-flowing-from-a-tap.jpg"
+              alt="Water crisis in Zimbabwe"
+              fill
+              className="object-cover"
+            />
+          </div>
           <div className="absolute bottom-16 left-12 bg-[#2B2B2B] bg-opacity-80 p-8 max-w-[294px] rounded-lg">
             <div className="relative">
               <div className="absolute -top-8 -left-4">
