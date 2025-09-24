@@ -12,9 +12,10 @@ if (typeof window !== 'undefined') {
 
 export default function Problem() {
   const imageRef = useRef<HTMLDivElement>(null);
+  const rippleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!imageRef.current) return;
+    if (!imageRef.current || !rippleRef.current) return;
 
     // Create parallax effect for the image only
     gsap.to(imageRef.current, {
@@ -27,6 +28,22 @@ export default function Problem() {
         scrub: true,
         invalidateOnRefresh: true
       }
+    });
+
+    // Create water ripple animation
+    const rippleElements = rippleRef.current.querySelectorAll('.ripple-wave');
+    
+    rippleElements.forEach((element, index) => {
+      gsap.to(element, {
+        y: -20,
+        scaleY: 1.2,
+        opacity: 0.6,
+        duration: 3 + index * 0.5,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: index * 0.8
+      });
     });
 
     return () => {
@@ -148,8 +165,29 @@ export default function Problem() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+         </div>
+       </div>
+       
+       {/* Water Ripple Overlay in Whitespace */}
+       <div 
+         ref={rippleRef}
+         className="absolute inset-0 pointer-events-none overflow-hidden"
+       >
+         {/* Main gradient overlay using your color scheme */}
+         <div className="absolute bottom-0 left-0 right-0 lg:h-64 h-32 bg-gradient-to-t from-gamboge-100/20 via-gamboge-50/10 to-transparent">
+           {/* Animated ripple waves */}
+           <div className="absolute inset-0 opacity-30">
+             <div className="ripple-wave absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-gamboge-200/30 via-transparent to-transparent"></div>
+             <div className="ripple-wave absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-gamboge-300/20 via-transparent to-transparent"></div>
+             <div className="ripple-wave absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-gamboge-100/25 via-transparent to-transparent"></div>
+           </div>
+         </div>
+         
+         {/* Additional shimmer effect */}
+         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gamboge-50/15 via-transparent to-transparent">
+           <div className="ripple-wave absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-gamboge-100/20 via-transparent to-transparent"></div>
+         </div>
+       </div>
+     </section>
+   );
+ }
