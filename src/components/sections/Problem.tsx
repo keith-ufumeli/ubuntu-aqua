@@ -16,15 +16,16 @@ export default function Problem() {
   useEffect(() => {
     if (!imageRef.current) return;
 
-    // Create parallax effect for the image
+    // Create parallax effect for the image only
     gsap.to(imageRef.current, {
-      yPercent: -50,
+      yPercent: -30,
       ease: "none",
       scrollTrigger: {
-        trigger: imageRef.current,
+        trigger: ".problem-section",
         start: "top bottom",
         end: "bottom top",
-        scrub: true
+        scrub: true,
+        invalidateOnRefresh: true
       }
     });
 
@@ -34,13 +35,31 @@ export default function Problem() {
   }, []);
 
   return (
-    <section className="relative bg-background">
+    <section className="relative bg-background problem-section">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* Left side - Image and Quote */}
         <div className="relative lg:h-[900px] h-[50vh] overflow-hidden">
+          {/* Static container for quote overlay */}
+          <div className="absolute inset-0 z-20">
+            <div className="absolute bottom-16 left-12 bg-[#2B2B2B] bg-opacity-80 p-8 max-w-[294px] rounded-lg">
+              <div className="relative">
+                <div className="absolute -top-8 -left-4">
+                  <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23.5114 4.38933C12.7419 4.38933 0 14.0012 0 23.8247V45.6107H19.7715V23.8247C19.7715 22.2845 13.2139 22.2845 13.2139 13.1741C13.2139 10.8023 17.9183 9.13115 23.5114 4.38933Z" fill="#FF9F1C"/>
+                    <path d="M50 4.38933C39.2305 4.38933 26.4886 14.0012 26.4886 23.8247V45.6107H46.2601V23.8247C46.2601 22.2845 39.7025 22.2845 39.7025 13.1741C39.7025 10.8023 44.4069 9.13115 50 4.38933Z" fill="#FF9F1C"/>
+                  </svg>
+                </div>
+                <p className="text-base sm:text-lg body-text text-white">
+                  70% of rural Zimbabweans are at risk of waterborne diseases
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Parallax Image Background */}
           <div 
             ref={imageRef}
-            className="absolute inset-0 w-full h-[120%] -top-[10%]"
+            className="absolute inset-0 w-full h-[120%] -top-[10%] z-10"
           >
             <Image
               src="/images/water-flowing-from-a-tap.jpg"
@@ -48,19 +67,6 @@ export default function Problem() {
               fill
               className="object-cover"
             />
-          </div>
-          <div className="absolute bottom-16 left-12 bg-[#2B2B2B] bg-opacity-80 p-8 max-w-[294px] rounded-lg">
-            <div className="relative">
-              <div className="absolute -top-8 -left-4">
-                <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M23.5114 4.38933C12.7419 4.38933 0 14.0012 0 23.8247V45.6107H19.7715V23.8247C19.7715 22.2845 13.2139 22.2845 13.2139 13.1741C13.2139 10.8023 17.9183 9.13115 23.5114 4.38933Z" fill="#FF9F1C"/>
-                  <path d="M50 4.38933C39.2305 4.38933 26.4886 14.0012 26.4886 23.8247V45.6107H46.2601V23.8247C46.2601 22.2845 39.7025 22.2845 39.7025 13.1741C39.7025 10.8023 44.4069 9.13115 50 4.38933Z" fill="#FF9F1C"/>
-                </svg>
-              </div>
-              <p className="text-base sm:text-lg body-text text-white">
-                70% of rural Zimbabweans are at risk of waterborne diseases
-              </p>
-            </div>
           </div>
         </div>
 
