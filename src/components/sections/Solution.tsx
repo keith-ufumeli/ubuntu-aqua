@@ -44,18 +44,25 @@ export default function Solution() {
         { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
       );
 
-      // Animate steps on mount
-      gsap.fromTo(stepRefs.current,
-        { opacity: 0, x: 30 },
-        { 
-          opacity: 1, 
-          x: 0, 
-          duration: 0.6, 
-          stagger: 0.2, 
-          ease: "power2.out",
-          delay: 0.3
+      // Initial animation for the first step
+      if (stepRefs.current[0]) {
+        gsap.fromTo(stepRefs.current[0],
+          { scale: 0.6, opacity: 0, y: 50 },
+          { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" }
+        );
+      }
+
+      // Set initial positions for other steps
+      stepRefs.current.forEach((ref, index) => {
+        if (index > 0 && ref) {
+          gsap.set(ref, { 
+            scale: 0.6, 
+            opacity: 0, 
+            xPercent: 100,
+            display: 'none'
+          });
         }
-      );
+      });
     });
 
     return () => ctx.revert();
@@ -64,22 +71,37 @@ export default function Solution() {
   useEffect(() => {
     // Animate step transitions
     const ctx = gsap.context(() => {
+      const timeline = gsap.timeline();
+      
       stepRefs.current.forEach((ref, index) => {
         if (ref) {
           if (index === activeStep) {
-            gsap.to(ref, {
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(244, 158, 11, 0.3)",
-              duration: 0.4,
-              ease: "power2.out"
-            });
+            // Show and animate in the active step
+            gsap.set(ref, { display: 'flex' });
+            timeline.fromTo(ref,
+              { scale: 0.6, opacity: 0, xPercent: 100 },
+              { 
+                scale: 1, 
+                opacity: 1, 
+                xPercent: 0, 
+                duration: 0.7, 
+                ease: "back.out(1.7)",
+              }
+            );
           } else {
-            gsap.to(ref, {
-              scale: 1,
-              boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
-              duration: 0.4,
-              ease: "power2.out"
-            });
+            // Animate out and hide the inactive step
+            if (window.getComputedStyle(ref).display !== 'none') {
+              timeline.to(ref, {
+                scale: 0.4,
+                opacity: 0,
+                xPercent: -100,
+                duration: 0.6,
+                ease: "power2.in",
+                onComplete: () => {
+                  gsap.set(ref, { display: 'none' });
+                }
+              }, '<');
+            }
           }
         }
       });
@@ -87,6 +109,39 @@ export default function Solution() {
 
     return () => ctx.revert();
   }, [activeStep]);
+
+  // Add hover animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      stepRefs.current.forEach((ref) => {
+        if (ref) {
+          ref.addEventListener('mouseenter', () => {
+            if (window.getComputedStyle(ref).display !== 'none') {
+              gsap.to(ref, {
+                scale: 1.02,
+                boxShadow: "0 20px 40px rgba(244, 158, 11, 0.2)",
+                duration: 0.3,
+                ease: "power2.out"
+              });
+            }
+          });
+
+          ref.addEventListener('mouseleave', () => {
+            if (window.getComputedStyle(ref).display !== 'none') {
+              gsap.to(ref, {
+                scale: 1,
+                boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+                duration: 0.3,
+                ease: "power2.out"
+              });
+            }
+          });
+        }
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   const handleStepClick = (index: number) => {
     setActiveStep(index);
@@ -99,6 +154,7 @@ export default function Solution() {
   return (
     <section id="solution" className="py-20 bg-[#20010A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Left Column */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div ref={containerRef}>
             <h2 className="heading-primary mb-6 text-primary">
@@ -137,13 +193,14 @@ export default function Solution() {
             </div>
           </div>
 
+          {/* Right Column */}
           <div className="relative">
-            <div className="rounded-2xl p-8 bg-card">
-              <h3 className="heading-secondary licorice-text mb-8">
+            <div className="rounded-2xl p-8 min-h-[500px] flex flex-col">
+              <h3 className="heading-secondary text-primary mb-8">
                 How Our AI Works
               </h3>
               
-              <div className="space-y-4">
+              <div className="relative flex-1 overflow-hidden">
                 {solutionSteps.map((step, index) => {
                   const IconComponent = step.icon;
                   return (
@@ -151,31 +208,31 @@ export default function Solution() {
                       key={step.id}
                       ref={setStepRef(index)}
                       onClick={() => handleStepClick(index)}
-                      className={`flex items-center space-x-4 p-4 rounded-xl cursor-pointer transition-all duration-300 hover:scale-105 border-2 ${
+                      className={`absolute inset-0 flex flex-col items-center justify-center p-8 rounded-xl cursor-pointer ${
                         index === activeStep 
-                          ? 'bg-primary border-primary' 
-                          : 'bg-transparent border-primary'
+                          ? 'bg-primary' 
+                          : 'bg-transparent'
                       }`}
                     >
                       <div 
-                        className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                        className={`w-20 h-20 rounded-full flex items-center justify-center mb-6 ${
                           index === activeStep 
                             ? 'bg-card text-primary' 
                             : 'bg-primary text-primary-foreground'
                         }`}
                       >
-                        <IconComponent className="w-6 h-6" />
+                        <IconComponent className="w-10 h-10" />
                       </div>
-                      <div className="flex-1">
+                      <div className="text-center max-w-md">
                         <h4 
-                          className={`heading-tertiary mb-1 ${
+                          className={`heading-tertiary mb-4 ${
                             index === activeStep ? 'text-primary-foreground' : 'text-primary'
                           }`}
                         >
                           {step.title}
                         </h4>
                         <p 
-                          className={`text-sm leading-relaxed body-text ${
+                          className={`text-lg leading-relaxed body-text ${
                             index === activeStep ? 'text-primary-foreground' : 'text-card-foreground'
                           }`}
                         >
@@ -187,19 +244,42 @@ export default function Solution() {
                 })}
               </div>
 
-              {/* Progress indicators */}
-              <div className="flex justify-center space-x-2 mt-8">
-                {solutionSteps.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleStepClick(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 bg-primary ${
-                      index === activeStep ? 'scale-125 opacity-100' : 'scale-100 opacity-40'
-                    }`}
-                    aria-label={`Go to step ${index + 1}`}
-                    title={`Go to step ${index + 1}`}
-                  />
-                ))}
+              {/* Navigation controls */}
+              <div className="flex items-center justify-between mt-8">
+                <button
+                  onClick={() => handleStepClick((activeStep - 1 + solutionSteps.length) % solutionSteps.length)}
+                  className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                  aria-label="Previous step"
+                >
+                  <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Progress indicators */}
+                <div className="flex justify-center space-x-3">
+                  {solutionSteps.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleStepClick(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 bg-primary ${
+                        index === activeStep ? 'scale-125 opacity-100' : 'scale-100 opacity-40'
+                      }`}
+                      aria-label={`Go to step ${index + 1}`}
+                      title={`Go to step ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => handleStepClick((activeStep + 1) % solutionSteps.length)}
+                  className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                  aria-label="Next step"
+                >
+                  <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
