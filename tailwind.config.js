@@ -79,7 +79,7 @@ module.exports = {
 				'700': '#4f4f4f',
 				'800': '#454545',
 				'900': '#3d3d3d',
-				'950': '#1A1A1A' // Main licorice
+				'950': '#20010A' // Main licorice
 			},
 			'antique-white': {
 				'50': '#fefdfb',

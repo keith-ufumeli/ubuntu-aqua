@@ -39,7 +39,7 @@
   :root {
     /* New color palette: Gamboge primary, Licorice secondary, Antique White background */
     --background: 34 100% 94%; /* Antique White #FAEBD7 */
-    --foreground: 0 0% 10%; /* Licorice #1A1A1A */
+    --foreground: 0 0% 10%; /* Licorice #1A1A1A  */
     --card: 34 100% 94%; /* Antique White #FAEBD7 */
     --card-foreground: 0 0% 10%; /* Licorice #1A1A1A */
     --popover: 34 100% 94%; /* Antique White #FAEBD7 */
@@ -197,6 +197,30 @@
   /* Ensure all headings use Poppins */
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
+  }
+
+  .licorice-text {
+    @apply text-[#20010A];
+  }
+
+  .antique-white-text {
+    @apply text-[#FAEBD7];
+  }
+
+  .gamboge-text {
+    @apply text-[#E49B0F];
+  }
+
+  .licorice-background {
+    @apply bg-[#20010A];
+  }
+
+  .antique-white-background {
+    @apply bg-[#FAEBD7];
+  }
+
+  .gamboge-background {
+    @apply bg-[#E49B0F];
   }
 }
 

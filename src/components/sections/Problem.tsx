@@ -202,7 +202,7 @@ export default function Problem() {
             {/* First Row - Heading and Description */}
             <div>
               <h2 className="font-heading text-3xl sm:text-4xl lg:text-[2.25rem] font-medium text-foreground leading-tight mb-6">
-                <span className="text-foreground">The Water Crisis in </span>
+                <span className="text-[#744127]">The Water Crisis in </span>
                 <span className="text-primary">Zimbabwe</span>
               </h2>
               <p className="text-base sm:text-lg body-text text-foreground">
