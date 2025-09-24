@@ -44,23 +44,25 @@ export default function Solution() {
         { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
       );
 
-      // Initial animation for the first step
-      if (stepRefs.current[0]) {
-        gsap.fromTo(stepRefs.current[0],
-          { scale: 0.6, opacity: 0, y: 50 },
-          { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" }
-        );
-      }
-
-      // Set initial positions for other steps
+      // Initial animations for steps
       stepRefs.current.forEach((ref, index) => {
-        if (index > 0 && ref) {
-          gsap.set(ref, { 
-            scale: 0.6, 
-            opacity: 0, 
-            xPercent: 100,
-            display: 'none'
-          });
+        if (ref) {
+          if (index === 0) {
+            // Animate first step
+            gsap.fromTo(ref,
+              { scale: 0.6, opacity: 0, x: 50 },
+              { scale: 1, opacity: 1, x: 0, duration: 0.8, ease: "back.out(1.7)" }
+            );
+          } else if (index === 1) {
+            // Show preview of second step
+            gsap.fromTo(ref,
+              { scale: 0.8, opacity: 0, x: '100%' },
+              { scale: 0.95, opacity: 1, x: '85%', duration: 0.8, delay: 0.2, ease: "power2.out" }
+            );
+          } else {
+            // Hide other steps
+            gsap.set(ref, { opacity: 0, x: '200%' });
+          }
         }
       });
     });
@@ -75,33 +77,40 @@ export default function Solution() {
       
       stepRefs.current.forEach((ref, index) => {
         if (ref) {
+          const nextIndex = (index + 1) % solutionSteps.length;
+          const isNext = nextIndex === activeStep;
+          const isPrev = (index - 1 + solutionSteps.length) % solutionSteps.length === activeStep;
+
           if (index === activeStep) {
-            // Show and animate in the active step
-            gsap.set(ref, { display: 'flex' });
-            timeline.fromTo(ref,
-              { scale: 0.6, opacity: 0, xPercent: 100 },
-              { 
-                scale: 1, 
-                opacity: 1, 
-                xPercent: 0, 
-                duration: 0.7, 
-                ease: "back.out(1.7)",
-              }
-            );
+            // Animate active step
+            timeline.to(ref, {
+              scale: 1,
+              opacity: 1,
+              x: 0,
+              duration: 0.7,
+              ease: "back.out(1.7)",
+            });
+          } else if (isNext) {
+            // Animate preview of next step
+            timeline.to(ref, {
+              scale: 0.95,
+              opacity: 1,
+              x: '85%',
+              duration: 0.7,
+              ease: "power2.out",
+            }, '<');
+          } else if (isPrev) {
+            // Animate previous step out
+            timeline.to(ref, {
+              scale: 0.8,
+              opacity: 0,
+              x: '-100%',
+              duration: 0.5,
+              ease: "power2.in",
+            }, '<');
           } else {
-            // Animate out and hide the inactive step
-            if (window.getComputedStyle(ref).display !== 'none') {
-              timeline.to(ref, {
-                scale: 0.4,
-                opacity: 0,
-                xPercent: -100,
-                duration: 0.6,
-                ease: "power2.in",
-                onComplete: () => {
-                  gsap.set(ref, { display: 'none' });
-                }
-              }, '<');
-            }
+            // Move other steps out of view
+            timeline.set(ref, { opacity: 0, x: '200%' });
           }
         }
       });
@@ -110,38 +119,54 @@ export default function Solution() {
     return () => ctx.revert();
   }, [activeStep]);
 
-  // Add hover animations
+  // Add hover and nudge animations for preview card
   useEffect(() => {
     const ctx = gsap.context(() => {
-      stepRefs.current.forEach((ref) => {
+      stepRefs.current.forEach((ref, index) => {
         if (ref) {
-          ref.addEventListener('mouseenter', () => {
-            if (window.getComputedStyle(ref).display !== 'none') {
-              gsap.to(ref, {
-                scale: 1.02,
-                boxShadow: "0 20px 40px rgba(244, 158, 11, 0.2)",
-                duration: 0.3,
-                ease: "power2.out"
-              });
-            }
-          });
+          const nextIndex = (index + 1) % solutionSteps.length;
+          const isNext = nextIndex === activeStep;
 
-          ref.addEventListener('mouseleave', () => {
-            if (window.getComputedStyle(ref).display !== 'none') {
+          if (isNext) {
+            // Preview card hover effect
+            ref.addEventListener('mouseenter', () => {
               gsap.to(ref, {
-                scale: 1,
-                boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+              scale: 0.92,
+              x: '88%', // Slight pull towards view
+              boxShadow: "0 25px 50px rgba(244, 158, 11, 0.3)",
+              duration: 0.3,
+              ease: "power2.out"
+              });
+            });
+
+            ref.addEventListener('mouseleave', () => {
+              gsap.to(ref, {
+              scale: 0.90,
+              x: '92%',
+                boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)",
                 duration: 0.3,
                 ease: "power2.out"
               });
-            }
-          });
+            });
+
+            // Periodic nudge animation
+            const nudgeTimeline = gsap.timeline({ repeat: -1, repeatDelay: 5 });
+            nudgeTimeline.to(ref, {
+              x: '90%',
+              duration: 0.5,
+              ease: "power1.out"
+            }).to(ref, {
+              x: '92%',
+              duration: 0.5,
+              ease: "power1.in"
+            });
+          }
         }
       });
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [activeStep]);
 
   const handleStepClick = (index: number) => {
     setActiveStep(index);
@@ -193,96 +218,85 @@ export default function Solution() {
             </div>
           </div>
 
-          {/* Right Column */}
-          <div className="relative">
-            <div className="rounded-2xl p-8 min-h-[500px] flex flex-col">
-              <h3 className="heading-secondary text-primary mb-8">
-                How Our AI Works
-              </h3>
-              
-              <div className="relative flex-1 overflow-hidden">
-                {solutionSteps.map((step, index) => {
-                  const IconComponent = step.icon;
-                  return (
-                    <div
-                      key={step.id}
-                      ref={setStepRef(index)}
-                      onClick={() => handleStepClick(index)}
-                      className={`absolute inset-0 flex flex-col items-center justify-center p-8 rounded-xl cursor-pointer ${
-                        index === activeStep 
-                          ? 'bg-primary' 
-                          : 'bg-transparent'
-                      }`}
-                    >
-                      <div 
-                        className={`w-20 h-20 rounded-full flex items-center justify-center mb-6 ${
-                          index === activeStep 
-                            ? 'bg-card text-primary' 
-                            : 'bg-primary text-primary-foreground'
-                        }`}
-                      >
-                        <IconComponent className="w-10 h-10" />
-                      </div>
-                      <div className="text-center max-w-md">
-                        <h4 
-                          className={`heading-tertiary mb-4 ${
-                            index === activeStep ? 'text-primary-foreground' : 'text-primary'
-                          }`}
+            {/* Right Column */}
+            <div className="relative lg:pl-12">
+              <div className="relative min-h-[600px] flex flex-col">
+                {/* Container with overflow control */}
+                <div className="relative flex-1 overflow-hidden">
+                  {/* Carousel track */}
+                  <div className="absolute inset-y-0 w-full">
+                    {solutionSteps.map((step, index) => {
+                      const IconComponent = step.icon;
+                      const nextIndex = (index + 1) % solutionSteps.length;
+                      const isNext = nextIndex === activeStep;
+                      
+                      return (
+                        <div
+                          key={step.id}
+                          ref={setStepRef(index)}
+                          onClick={() => handleStepClick(index)}
+                          className={`absolute top-1/2 -translate-y-1/2 w-full max-w-[380px] aspect-[4/3] 
+                            ${index === activeStep ? 'z-20' : isNext ? 'z-10' : 'z-0'}
+                            ${index === activeStep ? 'left-0' : isNext ? 'left-[92%]' : 'left-[200%]'}
+                            transition-all duration-300
+                          `}
                         >
-                          {step.title}
-                        </h4>
-                        <p 
-                          className={`text-lg leading-relaxed body-text ${
-                            index === activeStep ? 'text-primary-foreground' : 'text-card-foreground'
-                          }`}
-                        >
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                          <div 
+                            className={`w-full h-full p-6 rounded-2xl shadow-lg transform transition-all duration-300
+                              ${index === activeStep ? 'bg-primary scale-100' : 'bg-primary/5 scale-90 hover:scale-[0.92]'}
+                              ${isNext ? 'cursor-pointer hover:shadow-2xl hover:shadow-primary/20' : ''}
+                            `}
+                          >
+                            <div className="flex flex-col items-center justify-center h-full space-y-4">
+                              <div 
+                                className={`w-14 h-14 rounded-full flex items-center justify-center mb-2
+                                  ${index === activeStep ? 'bg-card text-primary' : 'bg-primary text-primary-foreground'}
+                                `}
+                              >
+                                <IconComponent className="w-7 h-7" />
+                              </div>
+                              <div className="text-center">
+                                <h4 
+                                  className={`text-lg font-semibold mb-2
+                                    ${index === activeStep ? 'text-primary-foreground' : 'text-primary'}
+                                  `}
+                                >
+                                  {step.title}
+                                </h4>
+                                <p 
+                                  className={`text-sm leading-relaxed max-w-[280px] mx-auto
+                                    ${index === activeStep ? 'text-primary-foreground' : 'text-card-foreground'}
+                                  `}
+                                >
+                                  {step.description}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
 
-              {/* Navigation controls */}
-              <div className="flex items-center justify-between mt-8">
-                <button
-                  onClick={() => handleStepClick((activeStep - 1 + solutionSteps.length) % solutionSteps.length)}
-                  className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
-                  aria-label="Previous step"
-                >
-                  <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-
-                {/* Progress indicators */}
-                <div className="flex justify-center space-x-3">
+                {/* Navigation controls */}
+                <div className="flex items-center justify-start space-x-3 mt-8">
                   {solutionSteps.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => handleStepClick(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 bg-primary ${
-                        index === activeStep ? 'scale-125 opacity-100' : 'scale-100 opacity-40'
-                      }`}
+                      className={`h-2 rounded-full transition-all duration-300 
+                        ${index === activeStep 
+                          ? 'w-8 bg-primary' 
+                          : 'w-2 bg-primary/40 hover:bg-primary/60'
+                        }`}
                       aria-label={`Go to step ${index + 1}`}
                       title={`Go to step ${index + 1}`}
                     />
                   ))}
                 </div>
-
-                <button
-                  onClick={() => handleStepClick((activeStep + 1) % solutionSteps.length)}
-                  className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
-                  aria-label="Next step"
-                >
-                  <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </section>
