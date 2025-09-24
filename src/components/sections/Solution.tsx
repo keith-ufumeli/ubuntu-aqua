@@ -104,7 +104,7 @@ export default function Solution() {
             <h2 className="heading-primary mb-6 text-primary">
               Our AI Solution
             </h2>
-            <p className="text-large mb-8 text-primary-foreground body-text">
+            <p className="body-text mb-20 text-primary-foreground">
               Ubuntu Aqua uses advanced machine learning to analyze environmental data, 
               water quality indicators, and historical patterns to predict potential 
               violations before they occur.
