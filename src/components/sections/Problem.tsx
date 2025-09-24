@@ -17,18 +17,24 @@ export default function Problem() {
   useEffect(() => {
     if (!imageRef.current || !rippleRef.current) return;
 
-    // Create parallax effect for the image only
-    gsap.to(imageRef.current, {
-      yPercent: -30,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".problem-section",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-        invalidateOnRefresh: true
+    // Enhanced parallax effect for the image
+    gsap.fromTo(imageRef.current,
+      {
+        yPercent: -15,
+      },
+      {
+        yPercent: 15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".problem-section",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5,
+          invalidateOnRefresh: true,
+          toggleActions: "play none none reverse"
+        }
       }
-    });
+    );
 
     // Create water ripple animation
     const rippleElements = rippleRef.current.querySelectorAll('.ripple-wave');
@@ -60,12 +66,12 @@ export default function Problem() {
           <div className="absolute inset-0 z-20">
             <div className="absolute bottom-16 left-12 bg-[#2B2B2B] bg-opacity-80 p-8 max-w-[294px] rounded-lg">
               <div className="relative">
-                <div className="absolute -top-8 -left-4">
-                  <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M23.5114 4.38933C12.7419 4.38933 0 14.0012 0 23.8247V45.6107H19.7715V23.8247C19.7715 22.2845 13.2139 22.2845 13.2139 13.1741C13.2139 10.8023 17.9183 9.13115 23.5114 4.38933Z" fill="#FF9F1C"/>
-                    <path d="M50 4.38933C39.2305 4.38933 26.4886 14.0012 26.4886 23.8247V45.6107H46.2601V23.8247C46.2601 22.2845 39.7025 22.2845 39.7025 13.1741C39.7025 10.8023 44.4069 9.13115 50 4.38933Z" fill="#FF9F1C"/>
-                  </svg>
-                </div>
+                 <div className="absolute -top-8 -left-4">
+                   <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M23.5114 4.38933C12.7419 4.38933 0 14.0012 0 23.8247V45.6107H19.7715V23.8247C19.7715 22.2845 13.2139 22.2845 13.2139 13.1741C13.2139 10.8023 17.9183 9.13115 23.5114 4.38933Z" fill="hsl(var(--primary))"/>
+                     <path d="M50 4.38933C39.2305 4.38933 26.4886 14.0012 26.4886 23.8247V45.6107H46.2601V23.8247C46.2601 22.2845 39.7025 22.2845 39.7025 13.1741C39.7025 10.8023 44.4069 9.13115 50 4.38933Z" fill="hsl(var(--primary))"/>
+                   </svg>
+                 </div>
                 <p className="text-base sm:text-lg body-text text-white">
                   70% of rural Zimbabweans are at risk of waterborne diseases
                 </p>
@@ -108,11 +114,14 @@ export default function Problem() {
               <div>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4L4 40H44L24 4Z" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M24 34H24.02" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M24 18V26" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <path d="M0 8.31541C0 20.0612 8.83117 25.7615 14.372 28.1819C15.875 28.8383 16.6265 29.1667 18.75 29.1667C18.75 29.1667 18.75 0 18.75 0L0 6.25C0 6.25 0 8.31541 0 8.31541Z" fill="#20010A" transform="translate(6.25 16.667)" />
+    <path d="M4.37792 28.1819C9.91875 25.7615 18.75 20.0612 18.75 8.31541C18.75 8.31541 18.75 6.25 18.75 6.25L0 0C0 0 0 29.1667 0 29.1667C2.12354 29.1667 2.875 28.8383 4.37792 28.1819Z" fill="#F49E0B" fill-opacity="0.5" transform="translate(25 16.667)" />
+    <path d="M10.9686 2.08498C4.70483 4.22908 1.57298 5.30113 0.7865 6.42169C0 7.54225 0 10.8731 0 17.5348C0 17.5348 0 18.75 0 18.75L18.75 12.5C18.75 12.5 18.75 0 18.75 0C17.0596 0 15.4271 0.558833 12.1619 1.6765C12.1619 1.6765 10.9686 2.08498 10.9686 2.08498Z" fill="#F49E0B" fill-opacity="0.5" transform="translate(6.25 4.167)" />
+    <path d="M6.58813 1.6765C3.32292 0.558833 1.69042 0 0 0C0 0 0 12.5 0 12.5L18.75 18.75C18.75 18.75 18.75 17.5348 18.75 17.5348C18.75 10.8731 18.75 7.54225 17.9635 6.42169C17.1771 5.30113 14.0452 4.22908 7.78146 2.08498C7.78146 2.08498 6.58813 1.6765 6.58813 1.6765Z" fill="#20010A" transform="translate(25 4.167)" />
+  </g>
+</svg>
                   </div>
                   <h3 className="font-heading text-xl font-medium text-foreground">
                     Reactive Monitoring
@@ -124,34 +133,34 @@ export default function Problem() {
                 </p>
               </div>
 
-              <div>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 21C26.2091 21 28 19.2091 28 17C28 14.7909 26.2091 13 24 13C21.7909 13 20 14.7909 20 17C20 19.2091 21.7909 21 24 21Z" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M36 17C38.2091 17 40 15.2091 40 13C40 10.7909 38.2091 9 36 9C33.7909 9 32 10.7909 32 13C32 15.2091 33.7909 17 36 17Z" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M12 17C14.2091 17 16 15.2091 16 13C16 10.7909 14.2091 9 12 9C9.79086 9 8 10.7909 8 13C8 15.2091 9.79086 17 12 17Z" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M24 21V41" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M36 17V37L24 41" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M12 17V37L24 41" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <h3 className="font-heading text-xl font-medium text-foreground">
-                    Limited Resources
-                  </h3>
-                </div>
-                <p className="text-sm sm:text-base body-text text-foreground">
-                  Health officials lack the tools and data needed to make proactive decisions 
-                  about water safety across vast regions.
-                </p>
-              </div>
+               <div>
+                 <div className="flex items-center gap-4 mb-4">
+                   <div className="w-12 h-12">
+                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <path d="M24 21C26.2091 21 28 19.2091 28 17C28 14.7909 26.2091 13 24 13C21.7909 13 20 14.7909 20 17C20 19.2091 21.7909 21 24 21Z" stroke="hsl(var(--primary))" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                       <path d="M36 17C38.2091 17 40 15.2091 40 13C40 10.7909 38.2091 9 36 9C33.7909 9 32 10.7909 32 13C32 15.2091 33.7909 17 36 17Z" stroke="hsl(var(--primary))" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                       <path d="M12 17C14.2091 17 16 15.2091 16 13C16 10.7909 14.2091 9 12 9C9.79086 9 8 10.7909 8 13C8 15.2091 9.79086 17 12 17Z" stroke="hsl(var(--primary))" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                       <path d="M24 21V41" stroke="hsl(var(--primary))" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                       <path d="M36 17V37L24 41" stroke="hsl(var(--primary))" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                       <path d="M12 17V37L24 41" stroke="hsl(var(--primary))" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                     </svg>
+                   </div>
+                   <h3 className="font-heading text-xl font-medium text-foreground">
+                     Limited Resources
+                   </h3>
+                 </div>
+                 <p className="text-sm sm:text-base body-text text-foreground">
+                   Health officials lack the tools and data needed to make proactive decisions 
+                   about water safety across vast regions.
+                 </p>
+               </div>
 
               <div className="md:col-span-2">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 25C27.3137 25 30 22.3137 30 19C30 15.6863 27.3137 13 24 13C20.6863 13 18 15.6863 18 19C18 22.3137 20.6863 25 24 25Z" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M40 19C40 32 24 42 24 42C24 42 8 32 8 19C8 11.268 15.268 5 24 5C32.732 5 40 11.268 40 19Z" stroke="#FF9F1C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M24 25C27.3137 25 30 22.3137 30 19C30 15.6863 27.3137 13 24 13C20.6863 13 18 15.6863 18 19C18 22.3137 20.6863 25 24 25Z" stroke="hsl(var(--primary))" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M40 19C40 32 24 42 24 42C24 42 8 32 8 19C8 11.268 15.268 5 24 5C32.732 5 40 11.268 40 19Z" stroke="hsl(var(--primary))" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
                   <h3 className="font-heading text-xl font-medium text-foreground">
