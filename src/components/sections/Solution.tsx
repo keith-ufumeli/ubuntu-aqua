@@ -69,9 +69,9 @@ export default function Solution() {
           });
 
           // Content elements
-          const content = ref.querySelector('.flex.flex-col.space-y-4');
-          const icon = ref.querySelector('.relative.w-24');
-          const line = ref.querySelector('.absolute.top-1/2.w-16');
+          const content = ref.querySelector('[class*="flex flex-col space-y-4"]');
+          const icon = ref.querySelector('[class*="relative w-24"]');
+          const line = ref.querySelector('[class*="absolute top-1/2 w-16"]');
 
           // Create timeline for each step
           const tl = gsap.timeline({
@@ -105,21 +105,21 @@ export default function Solution() {
           );
 
           // Add hover effect
-          ref.addEventListener("mouseenter", () => {
-            gsap.to(icon, {
-              scale: 1.1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
+          // ref.addEventListener("mouseenter", () => {
+          //   gsap.to(icon, {
+          //     scale: 1.1,
+          //     duration: 0.3,
+          //     ease: "power2.out"
+          //   });
+          // });
 
-          ref.addEventListener("mouseleave", () => {
-            gsap.to(icon, {
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
+          // ref.addEventListener("mouseleave", () => {
+          //   gsap.to(icon, {
+          //     scale: 1,
+          //     duration: 0.3,
+          //     ease: "power2.out"
+          //   });
+          // });
         }
       });
 
@@ -147,127 +147,7 @@ export default function Solution() {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
-    // 3D Carousel transitions
-    const ctx = gsap.context(() => {
-      const timeline = gsap.timeline();
-      
-      stepRefs.current.forEach((ref, index) => {
-        if (ref) {
-          const nextIndex = (index + 1) % solutionSteps.length;
-          const prevIndex = (index - 1 + solutionSteps.length) % solutionSteps.length;
-          const isActive = index === activeStep;
-          const isNext = nextIndex === activeStep;
-          const isPrev = prevIndex === activeStep;
-
-          if (isActive) {
-            // Active card animation
-            timeline.to(ref, {
-              xPercent: 0,
-              scale: 1,
-              opacity: 1,
-              rotationY: 0,
-              duration: 0.8,
-              ease: "power3.out",
-              transformOrigin: "50% 50% -200px"
-            });
-
-            // Floating animation
-            gsap.to(ref, {
-              y: -8,
-              duration: 1.5,
-              ease: "sine.inOut",
-              yoyo: true,
-              repeat: -1,
-              delay: 0.4
-            });
-
-          } else if (isNext) {
-            // Next card peek animation
-            timeline.to(ref, {
-              xPercent: 45,
-              scale: 0.85,
-              opacity: 0.7,
-              rotationY: 15,
-              y: 0,
-              duration: 0.7,
-              ease: "power2.out",
-              transformOrigin: "50% 50% -200px"
-            }, "<0.1");
-          } else {
-            // Hide other cards
-            timeline.to(ref, {
-              xPercent: 100,
-              scale: 0.7,
-              opacity: 0,
-              rotationY: 30,
-              duration: 0.5,
-              ease: "power2.inOut",
-              transformOrigin: "50% 50% -200px"
-            }, "<");
-          }
-        }
-      });
-    });
-
-    return () => ctx.revert();
-  }, [activeStep]);
-
-  // Hover effects for next card only
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      stepRefs.current.forEach((ref, index) => {
-        if (ref) {
-          const nextIndex = (index + 1) % solutionSteps.length;
-          const isNext = nextIndex === activeStep;
-
-          if (isNext) {
-            // Next card hover effect
-            ref.addEventListener('mouseenter', () => {
-              gsap.to(ref, {
-                xPercent: 40,
-                scale: 0.88,
-                rotationY: 10,
-                duration: 0.4,
-                ease: "power2.out"
-              });
-            });
-
-            ref.addEventListener('mouseleave', () => {
-              gsap.to(ref, {
-                xPercent: 45,
-                scale: 0.85,
-                rotationY: 15,
-                duration: 0.4,
-                ease: "power2.out"
-              });
-            });
-
-            // Subtle attention animation
-            const nudgeTimeline = gsap.timeline({ 
-              repeat: -1, 
-              repeatDelay: 4
-            });
-            nudgeTimeline.to(ref, {
-              xPercent: 43,
-              duration: 0.8,
-              ease: "power1.inOut"
-            }).to(ref, {
-              xPercent: 45,
-              duration: 0.8,
-              ease: "power1.inOut"
-            });
-          }
-        }
-      });
-    });
-
-    return () => ctx.revert();
-  }, [activeStep]);
-
-  const handleStepClick = (index: number) => {
-    setActiveStep(index);
-  };
+  // No hover effects or card transitions needed - removed
 
   const setStepRef = (index: number) => (el: HTMLDivElement | null) => {
     stepRefs.current[index] = el;
