@@ -274,14 +274,14 @@ export default function Solution() {
   };
 
   return (
-    <section id="solution" className="py-20 bg-[#E49B0F]">
+    <section id="solution" className="py-20 licorice-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div ref={containerRef} className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#20010A] mb-6 font-heading">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 font-heading">
             Our AI Solution
           </h2>
-          <p className="text-xl text-[#20010A]/80 max-w-3xl mx-auto">
+          <p className="text-xl antique-white-text max-w-3xl mx-auto body-text">
             Ubuntu Aqua uses advanced machine learning to analyze environmental data, 
             water quality indicators, and historical patterns to predict potential 
             violations before they occur.
@@ -291,7 +291,7 @@ export default function Solution() {
         {/* Steps Timeline */}
         <div className="relative">
           {/* Vertical Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-[#20010A]/20" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-primary/20" />
 
           {/* Steps */}
           {solutionSteps.map((step, index) => (
@@ -309,13 +309,13 @@ export default function Solution() {
                 ${index % 2 === 0 ? 'lg:pr-16' : 'lg:pl-16 lg:col-start-2'}
               `}>
                 <div className="flex flex-col space-y-4">
-                  <span className="text-sm font-bold tracking-wider text-[#20010A]/60 uppercase">
+                  <span className="text-sm font-bold font-heading tracking-wider text-primary/60 uppercase">
                     Step {index + 1}
                   </span>
-                  <h3 className="text-3xl font-bold text-[#20010A] font-heading">
+                  <h3 className="text-3xl font-bold text-primary font-heading">
                     {step.title}
                   </h3>
-                  <p className="text-lg text-[#20010A]/80 max-w-md">
+                  <p className="text-lg antique-white-text body-text max-w-md">
                     {step.description}
                   </p>
                 </div>
@@ -328,14 +328,14 @@ export default function Solution() {
               `}>
                 <div className="relative">
                   {/* Circle Background */}
-                  <div className="absolute inset-0 bg-[#20010A]/5 rounded-full blur-2xl" />
+                  <div className="absolute inset-0 bg-primary/5 rounded-full blur-2xl" />
                   {/* Icon Circle */}
-                  <div className="relative w-24 h-24 rounded-full bg-[#20010A] flex items-center justify-center">
-                    <step.icon className="w-12 h-12 text-[#E49B0F]" />
+                  <div className="relative w-24 h-24 rounded-full licorice-background flex items-center justify-center">
+                    <step.icon className="w-12 h-12 text-primary" />
                   </div>
                   {/* Connector Line */}
                   <div className={`
-                    absolute top-1/2 w-16 h-px bg-[#20010A]/20
+                    absolute top-1/2 w-16 h-px bg-primary/20
                     ${index % 2 === 0 ? 'right-full' : 'left-full'}
                   `} />
                 </div>
@@ -345,28 +345,28 @@ export default function Solution() {
         </div>
 
         {/* Benefits */}
-        <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex items-start space-x-4 bg-[#20010A]/5 p-6 rounded-xl">
-            <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-[#20010A]" />
+          <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex items-start space-x-4 bg-primary/5 p-6 rounded-xl">
+              <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="text-xl font-bold mb-2 gamboge-text">Early Warning System</h3>
+                <p className="antique-white-text body-text">Get alerts up to 72 hours before contamination events</p>
+              </div>
+            </div>
+          
+          <div className="flex items-start space-x-4 bg-primary/5 p-6 rounded-xl">
+            <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-primary" />
             <div>
-              <h3 className="text-xl font-bold mb-2 text-[#20010A]">Early Warning System</h3>
-              <p className="text-[#20010A]/80">Get alerts up to 72 hours before contamination events</p>
+              <h3 className="text-xl font-bold mb-2 gamboge-text">Data-Driven Insights</h3>
+              <p className="antique-white-text body-text">Make informed decisions with comprehensive risk analysis</p>
             </div>
           </div>
           
-          <div className="flex items-start space-x-4 bg-[#20010A]/5 p-6 rounded-xl">
-            <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-[#20010A]" />
+          <div className="flex items-start space-x-4 bg-primary/5 p-6 rounded-xl">
+            <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-primary" />
             <div>
-              <h3 className="text-xl font-bold mb-2 text-[#20010A]">Data-Driven Insights</h3>
-              <p className="text-[#20010A]/80">Make informed decisions with comprehensive risk analysis</p>
-            </div>
-          </div>
-          
-          <div className="flex items-start space-x-4 bg-[#20010A]/5 p-6 rounded-xl">
-            <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-[#20010A]" />
-            <div>
-              <h3 className="text-xl font-bold mb-2 text-[#20010A]">Scalable Technology</h3>
-              <p className="text-[#20010A]/80">Works across urban and rural communities throughout Zimbabwe</p>
+              <h3 className="text-xl font-bold mb-2 gamboge-text">Scalable Technology</h3>
+              <p className="antique-white-text body-text">Works across urban and rural communities throughout Zimbabwe</p>
             </div>
           </div>
         </div>
