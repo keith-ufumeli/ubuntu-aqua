@@ -222,5 +222,51 @@
   .gamboge-background {
     @apply bg-[#E49B0F];
   }
+
+  /* 3D Carousel utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .solution-card {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .solution-card-active {
+    @apply scale-100 opacity-100 rotate-0;
+    transform: translateZ(0) rotateY(0deg);
+  }
+
+  .solution-card-next {
+    @apply scale-90 opacity-70;
+    transform: translateX(45%) translateZ(-100px) rotateY(15deg);
+  }
+
+  .solution-card-prev {
+    @apply scale-90 opacity-70;
+    transform: translateX(-45%) translateZ(-100px) rotateY(-15deg);
+  }
+
+  .solution-card-hidden {
+    @apply scale-75 opacity-0;
+    transform: translateX(100%) translateZ(-200px) rotateY(30deg);
+  }
+
+  /* Solution section styles */
+  #solution {
+    @apply relative overflow-hidden;
+    perspective: 1000px;
+  }
+
+  #solution .sticky-container {
+    @apply sticky top-20;
+    height: fit-content;
+  }
+
+  #solution .card-content {
+    @apply transition-all duration-500;
+    transform-style: preserve-3d;
+  }
 }
 

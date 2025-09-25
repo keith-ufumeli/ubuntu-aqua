@@ -1,8 +1,10 @@
 'use client';
 
-import { CheckCircle, Database, Brain, AlertTriangle, Users } from 'lucide-react';
+import { CheckCircle, Database, Brain, AlertTriangle, Users, Shield } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { div } from 'framer-motion/m';
 
 const solutionSteps = [
   {
@@ -21,7 +23,7 @@ const solutionSteps = [
     id: 3,
     title: "Risk Prediction",
     description: "Generate risk predictions and actionable recommendations",
-    icon: AlertTriangle
+    icon: Shield
   },
   {
     id: 4,
@@ -37,33 +39,108 @@ export default function Solution() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Initial animation for the container
-      gsap.fromTo(containerRef.current, 
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
-      );
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
 
-      // Initial animations for steps
-      stepRefs.current.forEach((ref, index) => {
-        if (ref) {
-          if (index === 0) {
-            // Animate first step
-            gsap.fromTo(ref,
-              { scale: 0.6, opacity: 0, x: 50 },
-              { scale: 1, opacity: 1, x: 0, duration: 0.8, ease: "back.out(1.7)" }
-            );
-          } else if (index === 1) {
-            // Show preview of second step
-            gsap.fromTo(ref,
-              { scale: 0.8, opacity: 0, x: '100%' },
-              { scale: 0.95, opacity: 1, x: '85%', duration: 0.8, delay: 0.2, ease: "power2.out" }
-            );
-          } else {
-            // Hide other steps
-            gsap.set(ref, { opacity: 0, x: '200%' });
+    const ctx = gsap.context(() => {
+      // Header animation
+      gsap.fromTo(containerRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none"
           }
         }
+      );
+
+      // Animate each step
+      stepRefs.current.forEach((ref, index) => {
+        if (ref) {
+          // Set initial state
+          gsap.set(ref, {
+            opacity: 0,
+            x: index % 2 === 0 ? -50 : 50
+          });
+
+          // Content elements
+          const content = ref.querySelector('.flex.flex-col.space-y-4');
+          const icon = ref.querySelector('.relative.w-24');
+          const line = ref.querySelector('.absolute.top-1/2.w-16');
+
+          // Create timeline for each step
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ref,
+              start: "top 70%",
+              end: "top 30%",
+              toggleActions: "play none none reverse"
+            }
+          });
+
+          // Animate step
+          tl.fromTo(ref,
+            { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
+            { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" }
+          )
+          .fromTo(content,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+            "-=0.4"
+          )
+          .fromTo(icon,
+            { opacity: 0, scale: 0.8, rotate: -180 },
+            { opacity: 1, scale: 1, rotate: 0, duration: 0.8, ease: "back.out(1.7)" },
+            "-=0.6"
+          )
+          .fromTo(line,
+            { scaleX: 0, opacity: 0 },
+            { scaleX: 1, opacity: 1, duration: 0.4, ease: "power1.inOut" },
+            "-=0.4"
+          );
+
+          // Add hover effect
+          ref.addEventListener("mouseenter", () => {
+            gsap.to(icon, {
+              scale: 1.1,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+
+          ref.addEventListener("mouseleave", () => {
+            gsap.to(icon, {
+              scale: 1,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+        }
+      });
+
+      // Animate benefits section
+      const benefits = document.querySelectorAll('.flex.items-start.space-x-4');
+      benefits.forEach((benefit, index) => {
+        gsap.fromTo(benefit,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: index * 0.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: benefit,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
       });
     });
 
@@ -71,46 +148,63 @@ export default function Solution() {
   }, []);
 
   useEffect(() => {
-    // Animate step transitions
+    // 3D Carousel transitions
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline();
       
       stepRefs.current.forEach((ref, index) => {
         if (ref) {
           const nextIndex = (index + 1) % solutionSteps.length;
+          const prevIndex = (index - 1 + solutionSteps.length) % solutionSteps.length;
+          const isActive = index === activeStep;
           const isNext = nextIndex === activeStep;
-          const isPrev = (index - 1 + solutionSteps.length) % solutionSteps.length === activeStep;
+          const isPrev = prevIndex === activeStep;
 
-          if (index === activeStep) {
-            // Animate active step
+          if (isActive) {
+            // Active card animation
             timeline.to(ref, {
+              xPercent: 0,
               scale: 1,
               opacity: 1,
-              x: 0,
-              duration: 0.7,
-              ease: "back.out(1.7)",
+              rotationY: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              transformOrigin: "50% 50% -200px"
             });
+
+            // Floating animation
+            gsap.to(ref, {
+              y: -8,
+              duration: 1.5,
+              ease: "sine.inOut",
+              yoyo: true,
+              repeat: -1,
+              delay: 0.4
+            });
+
           } else if (isNext) {
-            // Animate preview of next step
+            // Next card peek animation
             timeline.to(ref, {
-              scale: 0.95,
-              opacity: 1,
-              x: '85%',
+              xPercent: 45,
+              scale: 0.85,
+              opacity: 0.7,
+              rotationY: 15,
+              y: 0,
               duration: 0.7,
               ease: "power2.out",
-            }, '<');
-          } else if (isPrev) {
-            // Animate previous step out
-            timeline.to(ref, {
-              scale: 0.8,
-              opacity: 0,
-              x: '-100%',
-              duration: 0.5,
-              ease: "power2.in",
-            }, '<');
+              transformOrigin: "50% 50% -200px"
+            }, "<0.1");
           } else {
-            // Move other steps out of view
-            timeline.set(ref, { opacity: 0, x: '200%' });
+            // Hide other cards
+            timeline.to(ref, {
+              xPercent: 100,
+              scale: 0.7,
+              opacity: 0,
+              rotationY: 30,
+              duration: 0.5,
+              ease: "power2.inOut",
+              transformOrigin: "50% 50% -200px"
+            }, "<");
           }
         }
       });
@@ -119,7 +213,7 @@ export default function Solution() {
     return () => ctx.revert();
   }, [activeStep]);
 
-  // Add hover and nudge animations for preview card
+  // Hover effects for next card only
   useEffect(() => {
     const ctx = gsap.context(() => {
       stepRefs.current.forEach((ref, index) => {
@@ -128,37 +222,40 @@ export default function Solution() {
           const isNext = nextIndex === activeStep;
 
           if (isNext) {
-            // Preview card hover effect
+            // Next card hover effect
             ref.addEventListener('mouseenter', () => {
               gsap.to(ref, {
-              scale: 0.92,
-              x: '88%', // Slight pull towards view
-              boxShadow: "0 25px 50px rgba(244, 158, 11, 0.3)",
-              duration: 0.3,
-              ease: "power2.out"
+                xPercent: 40,
+                scale: 0.88,
+                rotationY: 10,
+                duration: 0.4,
+                ease: "power2.out"
               });
             });
 
             ref.addEventListener('mouseleave', () => {
               gsap.to(ref, {
-              scale: 0.90,
-              x: '92%',
-                boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)",
-                duration: 0.3,
+                xPercent: 45,
+                scale: 0.85,
+                rotationY: 15,
+                duration: 0.4,
                 ease: "power2.out"
               });
             });
 
-            // Periodic nudge animation
-            const nudgeTimeline = gsap.timeline({ repeat: -1, repeatDelay: 5 });
+            // Subtle attention animation
+            const nudgeTimeline = gsap.timeline({ 
+              repeat: -1, 
+              repeatDelay: 4
+            });
             nudgeTimeline.to(ref, {
-              x: '90%',
-              duration: 0.5,
-              ease: "power1.out"
+              xPercent: 43,
+              duration: 0.8,
+              ease: "power1.inOut"
             }).to(ref, {
-              x: '92%',
-              duration: 0.5,
-              ease: "power1.in"
+              xPercent: 45,
+              duration: 0.8,
+              ease: "power1.inOut"
             });
           }
         }
@@ -177,128 +274,103 @@ export default function Solution() {
   };
 
   return (
-    <section id="solution" className="py-20 bg-[#20010A]">
+    <section id="solution" className="py-20 bg-[#E49B0F]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Left Column */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div ref={containerRef}>
-            <h2 className="heading-primary mb-6 text-primary">
-              Our AI Solution
-            </h2>
-            <p className="body-text mb-20 text-primary-foreground">
-              Ubuntu Aqua uses advanced machine learning to analyze environmental data, 
-              water quality indicators, and historical patterns to predict potential 
-              violations before they occur.
-            </p>
-            
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="heading-tertiary mb-2 text-primary">Early Warning System</h3>
-                  <p className="body-text text-primary-foreground">Get alerts up to 72 hours before contamination events</p>
+        {/* Header */}
+        <div ref={containerRef} className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#20010A] mb-6 font-heading">
+            Our AI Solution
+          </h2>
+          <p className="text-xl text-[#20010A]/80 max-w-3xl mx-auto">
+            Ubuntu Aqua uses advanced machine learning to analyze environmental data, 
+            water quality indicators, and historical patterns to predict potential 
+            violations before they occur.
+          </p>
+        </div>
+
+        {/* Steps Timeline */}
+        <div className="relative">
+          {/* Vertical Line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-[#20010A]/20" />
+
+          {/* Steps */}
+          {solutionSteps.map((step, index) => (
+            <div
+              key={step.id}
+              ref={setStepRef(index)}
+              className={`
+                relative grid grid-cols-1 lg:grid-cols-2 gap-8 mb-32 last:mb-0
+                ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left lg:grid-flow-dense'}
+              `}
+            >
+              {/* Content */}
+              <div className={`
+                flex flex-col items-center lg:items-${index % 2 === 0 ? 'end' : 'start'}
+                ${index % 2 === 0 ? 'lg:pr-16' : 'lg:pl-16 lg:col-start-2'}
+              `}>
+                <div className="flex flex-col space-y-4">
+                  <span className="text-sm font-bold tracking-wider text-[#20010A]/60 uppercase">
+                    Step {index + 1}
+                  </span>
+                  <h3 className="text-3xl font-bold text-[#20010A] font-heading">
+                    {step.title}
+                  </h3>
+                  <p className="text-lg text-[#20010A]/80 max-w-md">
+                    {step.description}
+                  </p>
                 </div>
               </div>
-              
-              <div className="flex items-start space-x-4">
-                <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="heading-tertiary mb-2 text-primary">Data-Driven Insights</h3>
-                  <p className="body-text text-primary-foreground">Make informed decisions with comprehensive risk analysis</p>
+
+              {/* Icon */}
+              <div className={`
+                flex items-center justify-center
+                ${index % 2 === 0 ? 'lg:col-start-2' : 'lg:col-start-1'}
+              `}>
+                <div className="relative">
+                  {/* Circle Background */}
+                  <div className="absolute inset-0 bg-[#20010A]/5 rounded-full blur-2xl" />
+                  {/* Icon Circle */}
+                  <div className="relative w-24 h-24 rounded-full bg-[#20010A] flex items-center justify-center">
+                    <step.icon className="w-12 h-12 text-[#E49B0F]" />
+                  </div>
+                  {/* Connector Line */}
+                  <div className={`
+                    absolute top-1/2 w-16 h-px bg-[#20010A]/20
+                    ${index % 2 === 0 ? 'right-full' : 'left-full'}
+                  `} />
                 </div>
               </div>
-              
-              <div className="flex items-start space-x-4">
-                <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-primary" />
-                <div>
-                  <h3 className="heading-tertiary mb-2 text-primary">Scalable Technology</h3>
-                  <p className="body-text text-primary-foreground">Works across urban and rural communities throughout Zimbabwe</p>
-                </div>
-              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Benefits */}
+        <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex items-start space-x-4 bg-[#20010A]/5 p-6 rounded-xl">
+            <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-[#20010A]" />
+            <div>
+              <h3 className="text-xl font-bold mb-2 text-[#20010A]">Early Warning System</h3>
+              <p className="text-[#20010A]/80">Get alerts up to 72 hours before contamination events</p>
             </div>
           </div>
-
-            {/* Right Column */}
-            <div className="relative lg:pl-12">
-              <div className="relative min-h-[600px] flex flex-col">
-                {/* Container with overflow control */}
-                <div className="relative flex-1 overflow-hidden">
-                  {/* Carousel track */}
-                  <div className="absolute inset-y-0 w-full">
-                    {solutionSteps.map((step, index) => {
-                      const IconComponent = step.icon;
-                      const nextIndex = (index + 1) % solutionSteps.length;
-                      const isNext = nextIndex === activeStep;
-                      
-                      return (
-                        <div
-                          key={step.id}
-                          ref={setStepRef(index)}
-                          onClick={() => handleStepClick(index)}
-                          className={`absolute top-1/2 -translate-y-1/2 w-full max-w-[380px] aspect-[4/3] 
-                            ${index === activeStep ? 'z-20' : isNext ? 'z-10' : 'z-0'}
-                            ${index === activeStep ? 'left-0' : isNext ? 'left-[92%]' : 'left-[200%]'}
-                            transition-all duration-300
-                          `}
-                        >
-                          <div 
-                            className={`w-full h-full p-6 rounded-2xl shadow-lg transform transition-all duration-300
-                              ${index === activeStep ? 'bg-primary scale-100' : 'bg-primary/5 scale-90 hover:scale-[0.92]'}
-                              ${isNext ? 'cursor-pointer hover:shadow-2xl hover:shadow-primary/20' : ''}
-                            `}
-                          >
-                            <div className="flex flex-col items-center justify-center h-full space-y-4">
-                              <div 
-                                className={`w-14 h-14 rounded-full flex items-center justify-center mb-2
-                                  ${index === activeStep ? 'bg-card text-primary' : 'bg-primary text-primary-foreground'}
-                                `}
-                              >
-                                <IconComponent className="w-7 h-7" />
-                              </div>
-                              <div className="text-center">
-                                <h4 
-                                  className={`text-lg font-semibold mb-2
-                                    ${index === activeStep ? 'text-primary-foreground' : 'text-primary'}
-                                  `}
-                                >
-                                  {step.title}
-                                </h4>
-                                <p 
-                                  className={`text-sm leading-relaxed max-w-[280px] mx-auto
-                                    ${index === activeStep ? 'text-primary-foreground' : 'text-card-foreground'}
-                                  `}
-                                >
-                                  {step.description}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Navigation controls */}
-                <div className="flex items-center justify-start space-x-3 mt-8">
-                  {solutionSteps.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleStepClick(index)}
-                      className={`h-2 rounded-full transition-all duration-300 
-                        ${index === activeStep 
-                          ? 'w-8 bg-primary' 
-                          : 'w-2 bg-primary/40 hover:bg-primary/60'
-                        }`}
-                      aria-label={`Go to step ${index + 1}`}
-                      title={`Go to step ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
+          
+          <div className="flex items-start space-x-4 bg-[#20010A]/5 p-6 rounded-xl">
+            <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-[#20010A]" />
+            <div>
+              <h3 className="text-xl font-bold mb-2 text-[#20010A]">Data-Driven Insights</h3>
+              <p className="text-[#20010A]/80">Make informed decisions with comprehensive risk analysis</p>
             </div>
+          </div>
+          
+          <div className="flex items-start space-x-4 bg-[#20010A]/5 p-6 rounded-xl">
+            <CheckCircle className="h-6 w-6 mt-1 flex-shrink-0 text-[#20010A]" />
+            <div>
+              <h3 className="text-xl font-bold mb-2 text-[#20010A]">Scalable Technology</h3>
+              <p className="text-[#20010A]/80">Works across urban and rural communities throughout Zimbabwe</p>
+            </div>
+          </div>
         </div>
-      </div>
+        </div>
     </section>
   );
 }
