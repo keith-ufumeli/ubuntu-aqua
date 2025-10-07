@@ -1,10 +1,9 @@
 'use client';
 
-import { CheckCircle, Database, Brain, AlertTriangle, Users, Shield } from 'lucide-react';
+import { CheckCircle, Database, Brain, Users, Shield } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { div } from 'framer-motion/m';
 
 const solutionSteps = [
   {
@@ -34,7 +33,6 @@ const solutionSteps = [
 ];
 
 export default function Solution() {
-  const [activeStep, setActiveStep] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 

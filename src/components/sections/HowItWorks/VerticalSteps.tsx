@@ -2,7 +2,7 @@
 
 import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Zap, TrendingUp, Shield, Check } from 'lucide-react';
+import { Globe, Zap, TrendingUp, Shield } from 'lucide-react';
 
 interface VerticalStepsProps {
   stepsRef: React.MutableRefObject<(HTMLDivElement | null)[]>;

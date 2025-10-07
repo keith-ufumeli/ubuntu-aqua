@@ -13,7 +13,6 @@ export default function Navigation() {
   // Enhanced transform values for dynamic positioning and styling
   const y = useTransform(scrollY, [0, 100], [0, 0]);
   const scale = useTransform(scrollY, [0, 100], [1, 0.95]);
-  const height = useTransform(scrollY, [0, 100], ['4rem', '3.5rem']);
   const blur = useTransform(scrollY, [0, 100], ['blur-xl', 'blur-2xl']);
   const bgOpacity = useTransform(scrollY, [0, 100], [0.4, 0.9]);
 
