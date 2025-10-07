@@ -273,10 +273,10 @@
   .bar-large-1 {
     @apply bg-[#20000C] rounded-t-lg shadow-lg;
     width: 150px;
-    height: 95%;
-    background-image: url('/images/african-woman-standing-on-seashore.jpg');
+    height: 100%;
+    background-image: url('/images/bar-bg-1.jpg');
     background-size: cover;
-    background-position: left center;
+    background-position: 0% 50%;
     background-clip: padding-box;
     -webkit-mask: linear-gradient(to bottom, black 0%, black 100%);
     mask: linear-gradient(to bottom, black 0%, black 100%);
@@ -285,10 +285,10 @@
   .bar-large-2 {
     @apply bg-[#20000C] rounded-t-lg shadow-lg;
     width: 150px;
-    height: 80%;
-    background-image: url('/images/african-woman-standing-on-seashore.jpg');
+    height: 90%;
+    background-image: url('/images/bar-bg-1.jpg');
     background-size: cover;
-    background-position: center center;
+    background-position: 50% 50%;
     background-clip: padding-box;
     -webkit-mask: linear-gradient(to bottom, black 0%, black 100%);
     mask: linear-gradient(to bottom, black 0%, black 100%);
@@ -297,10 +297,10 @@
   .bar-large-3 {
     @apply bg-[#20000C] rounded-t-lg shadow-lg;
     width: 150px;
-    height: 65%;
-    background-image: url('/images/african-woman-standing-on-seashore.jpg');
+    height: 80%;
+    background-image: url('/images/bar-bg-1.jpg');
     background-size: cover;
-    background-position: right center;
+    background-position: 100% 50%;
     background-clip: padding-box;
     -webkit-mask: linear-gradient(to bottom, black 0%, black 100%);
     mask: linear-gradient(to bottom, black 0%, black 100%);

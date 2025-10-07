@@ -18,7 +18,7 @@ const LeftVisual = forwardRef<HTMLDivElement, LeftVisualProps>(
           {/* Background Image - Full container */}
           
           {/* Large Bars - Starting from top, extending down */}
-          <div className="absolute top-0 left-0 w-full h-full flex items-start justify-start gap-4 p-8">
+          <div className="absolute top-[-40px] left-0 w-full h-full flex items-start justify-start gap-4 p-8">
             <div
               ref={el => { barsRef.current[0] = el; }}
               className="bar-large-1"
@@ -52,7 +52,7 @@ const LeftVisual = forwardRef<HTMLDivElement, LeftVisualProps>(
           
           <motion.p
             ref={subtextRef}
-            className="text-lg text-[#FAEBD7] leading-relaxed max-w-md"
+            className="text-lg licorice-text body-text leading-relaxed max-w-md"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ 
               opacity: 1, 
