@@ -15,10 +15,8 @@ const LeftVisual = forwardRef<HTMLDivElement, LeftVisualProps>(
       <div ref={ref} className="relative">
         {/* Fluid Layout - Bars extending from top */}
         <div className="relative h-[500px] mb-8">
-          {/* Background Image - Full container */}
-          
           {/* Large Bars - Starting from top, extending down */}
-          <div className="absolute top-[-40px] left-0 w-full h-full flex items-start justify-start gap-4 p-8">
+          <div className="absolute top-[-35px] left-0 w-full h-full flex items-start justify-start gap-4 p-8">
             <div
               ref={el => { barsRef.current[0] = el; }}
               className="bar-large-1"
@@ -32,11 +30,10 @@ const LeftVisual = forwardRef<HTMLDivElement, LeftVisualProps>(
               className="bar-large-3"
             />
           </div>
-
         </div>
 
-        {/* Text Content - Positioned below bars with proper spacing */}
-        <div className="space-y-4 relative z-10">
+        {/* Text Content - Aligned with bars */}
+        <div className="space-y-4 relative z-10 pl-8">
           <motion.h2
             ref={headingRef}
             className="text-4xl lg:text-5xl font-bold text-[#E49B0F] leading-tight"
