@@ -273,7 +273,7 @@
   .bar-large-1 {
     @apply bg-[#20000C] rounded-t-lg shadow-lg;
     width: 150px;
-    height: 85%;
+    height: 95%;
     background-image: url('/images/african-woman-standing-on-seashore.jpg');
     background-size: cover;
     background-position: left center;
@@ -285,7 +285,7 @@
   .bar-large-2 {
     @apply bg-[#20000C] rounded-t-lg shadow-lg;
     width: 150px;
-    height: 70%;
+    height: 80%;
     background-image: url('/images/african-woman-standing-on-seashore.jpg');
     background-size: cover;
     background-position: center center;
@@ -297,7 +297,7 @@
   .bar-large-3 {
     @apply bg-[#20000C] rounded-t-lg shadow-lg;
     width: 150px;
-    height: 55%;
+    height: 65%;
     background-image: url('/images/african-woman-standing-on-seashore.jpg');
     background-size: cover;
     background-position: right center;
