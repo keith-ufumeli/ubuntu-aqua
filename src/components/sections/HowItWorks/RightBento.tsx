@@ -34,9 +34,9 @@ const processSteps = [
 const RightBento = forwardRef<HTMLDivElement, RightBentoProps>(
   ({ cardsRef }, ref) => {
     return (
-      <div ref={ref} className="h-full">
+      <div ref={ref} className="">
         {/* Bento Grid Layout - 2x2 Grid */}
-        <div className="grid grid-cols-2 gap-6 h-full">
+        <div className="grid grid-cols-2 gap-6">
           {/* Card 1 - Data Collection (Top Left) */}
           <div 
             ref={el => { cardsRef.current[0] = el; }}

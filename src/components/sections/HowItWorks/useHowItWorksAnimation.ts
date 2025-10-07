@@ -27,97 +27,46 @@ export const useHowItWorksAnimation = () => {
           trigger: sectionRef.current,
           start: 'top 80%',
           end: 'bottom 20%',
-          pin: true,
-          scrub: 1,
+          pin: false,
+          scrub: 0.5,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            // Performance optimization: only update when needed
-            if (self.progress > 0.1 && self.progress < 0.9) {
-              // Add subtle parallax effect to background
-              const parallaxOffset = (self.progress - 0.5) * 20;
-              gsap.set(sectionRef.current, { 
-                backgroundPosition: `center ${50 + parallaxOffset}%` 
-              });
-            }
-          }
         }
       });
 
-      // Animate bars with enhanced effects
+      // Simple entrance animations
       const bars = barsRef.current.filter(Boolean);
-      gsap.set(bars, { 
-        height: 0, 
-        transformOrigin: 'bottom',
-        willChange: 'height, background'
-      });
-      
-      tl.to(bars, {
-        height: '100%',
-        duration: 1.2,
-        stagger: 0.25,
-        ease: 'power2.out'
-      }, 0);
-
-      // Enhanced text animations with split effect
       const textElements = [headingRef.current, subtextRef.current].filter(Boolean);
-      gsap.set(textElements, { 
-        opacity: 0, 
-        y: 40,
-        willChange: 'opacity, transform'
-      });
-      
-      tl.to(textElements, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: 'expo.out'
-      }, 0.4);
-
-      // Animate bento cards with enhanced effects
       const cards = cardsRef.current.filter(Boolean);
-      gsap.set(cards, { 
-        scale: 0.8, 
+
+      // Set initial states
+      gsap.set([...bars, ...textElements, ...cards], { 
         opacity: 0, 
-        rotation: 3,
-        y: 30,
-        willChange: 'transform, opacity'
+        y: 30 
       });
 
-      tl.to(cards, {
-        scale: 1,
-        opacity: 1,
-        rotation: 0,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'back.out(1.4)'
-      }, 0.8);
-
-      // Add shimmer effect to bars with performance optimization
+      // Animate elements in sequence
       tl.to(bars, {
-        background: 'linear-gradient(45deg, #20000C 0%, #E49B0F 50%, #20000C 100%)',
-        backgroundSize: '200% 200%',
-        duration: 3,
-        ease: 'none',
-        repeat: -1,
-        yoyo: true
-      }, 1.8);
-
-      // Add subtle floating animation to cards
-      cards.forEach((card, index) => {
-        if (card) {
-          gsap.to(card, {
-            y: -5,
-            duration: 2 + index * 0.3,
-            ease: 'power2.inOut',
-            repeat: -1,
-            yoyo: true,
-            delay: 2 + index * 0.2
-          });
-        }
-      });
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out'
+      })
+      .to(textElements, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out'
+      }, 0.2)
+      .to(cards, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out'
+      }, 0.4);
 
     }, sectionRef);
 

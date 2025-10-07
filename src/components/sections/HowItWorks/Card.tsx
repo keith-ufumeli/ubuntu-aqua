@@ -52,10 +52,10 @@ export default function Card({ icon: Icon, title, description, index }: CardProp
           
           {/* Content */}
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-white mb-3">
+            <h3 className="text-lg font-heading font-semibold text-white mb-3">
               {title}
             </h3>
-            <p className="text-white/80 text-sm leading-relaxed">
+            <p className="text-white/80 body-text text-sm leading-relaxed">
               {description}
             </p>
           </div>

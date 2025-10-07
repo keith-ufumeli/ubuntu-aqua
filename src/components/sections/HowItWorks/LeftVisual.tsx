@@ -10,9 +10,9 @@ interface LeftVisualProps {
 }
 
 const LeftVisual = forwardRef<HTMLDivElement, LeftVisualProps>(
-  ({ barsRef, headingRef }, ref) => {
+  ({ barsRef, headingRef, subtextRef }, ref) => {
     return (
-      <div ref={ref} className="relative h-full flex flex-col justify-between">
+      <div ref={ref} className="relative flex flex-col justify-between">
         {/* Top Area - Animated Bars with Background Image */}
         <div className="relative h-96 mb-8">
           {/* Background Image */}
@@ -52,6 +52,20 @@ const LeftVisual = forwardRef<HTMLDivElement, LeftVisualProps>(
           >
             How It Works
           </motion.h2>
+          
+          <motion.p
+            ref={subtextRef}
+            className="text-lg text-[#FAEBD7] leading-relaxed max-w-md"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ 
+              opacity: 1, 
+              y: 0,
+              transition: { duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }
+            }}
+          >
+            Our AI-powered system transforms environmental data into actionable insights, 
+            enabling proactive water quality protection across Zimbabwe.
+          </motion.p>
         </div>
       </div>
     );

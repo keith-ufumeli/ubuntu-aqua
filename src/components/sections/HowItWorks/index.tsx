@@ -23,7 +23,7 @@ export default function HowItWorks() {
     >
       <div className="max-w-7xl mx-auto">
         {/* 2-Column Grid Layout */}
-        <div className="grid lg:grid-cols-2 gap-16 h-full">
+        <div className="grid lg:grid-cols-2 gap-16">
           {/* Left Column - Visual & Text */}
           <LeftVisual
             ref={leftVisualRef}
