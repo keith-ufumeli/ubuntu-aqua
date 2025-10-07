@@ -1,7 +1,7 @@
 'use client';
 
-import { forwardRef } from 'react';
-import { motion } from 'framer-motion';
+import { forwardRef, useState, useRef } from 'react';
+import { motion, useInView, Variants } from 'framer-motion';
 import { Globe, Zap, TrendingUp, Shield } from 'lucide-react';
 
 interface VerticalStepsProps {
@@ -37,59 +37,248 @@ const processSteps = [
 
 const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
   ({ stepsRef }, ref) => {
+    const [hoveredStep, setHoveredStep] = useState<number | null>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+
+    // Enhanced animation variants with proper typing
+    const containerVariants: Variants = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.15,
+          delayChildren: 0.2
+        }
+      }
+    };
+
+    const stepVariants: Variants = {
+      hidden: { 
+        opacity: 0, 
+        y: 40,
+        scale: 0.95
+      },
+      visible: { 
+        opacity: 1, 
+        y: 0,
+        scale: 1,
+        transition: {
+          duration: 0.7,
+          ease: "easeOut",
+          type: "spring",
+          stiffness: 100,
+          damping: 15
+        }
+      }
+    };
+
+    const numberCircleVariants: Variants = {
+      hidden: { 
+        scale: 0,
+        rotate: -180
+      },
+      visible: { 
+        scale: 1,
+        rotate: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+          delay: 0.2
+        }
+      },
+      hover: {
+        scale: 1.1,
+        rotate: 5,
+        transition: {
+          duration: 0.3,
+          ease: "easeOut"
+        }
+      }
+    };
+
+    const iconVariants: Variants = {
+      hidden: { 
+        scale: 0,
+        rotate: -90
+      },
+      visible: { 
+        scale: 1,
+        rotate: 0,
+        transition: {
+          duration: 0.5,
+          ease: "easeOut",
+          delay: 0.4
+        }
+      },
+      hover: {
+        scale: 1.2,
+        rotate: 10,
+        transition: {
+          duration: 0.2,
+          ease: "easeOut"
+        }
+      },
+      pulse: {
+        scale: [1, 1.1, 1],
+        transition: {
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }
+      }
+    };
+
+    const contentVariants: Variants = {
+      hidden: { 
+        opacity: 0,
+        x: -20
+      },
+      visible: { 
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+          delay: 0.3
+        }
+      }
+    };
+
+    const arrowVariants: Variants = {
+      hidden: { 
+        scaleY: 0,
+        opacity: 0
+      },
+      visible: { 
+        scaleY: 1,
+        opacity: 1,
+        transition: {
+          duration: 0.8,
+          ease: "easeOut",
+          delay: 0.6
+        }
+      }
+    };
+
     return (
       <div ref={ref} className="pt-20">
-        <div className="space-y-8">
+        <motion.div 
+          ref={containerRef}
+          className="space-y-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {processSteps.map((step, index) => {
             const Icon = step.icon;
             const isLast = index === processSteps.length - 1;
+            const isHovered = hoveredStep === index;
             
             return (
               <motion.div
                 key={step.number}
                 ref={el => { stepsRef.current[index] = el; }}
-                className="relative flex items-start gap-6"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { duration: 0.6, delay: index * 0.1 }
+                className="relative flex items-start gap-6 group cursor-pointer step-container"
+                variants={stepVariants}
+                onHoverStart={() => setHoveredStep(index)}
+                onHoverEnd={() => setHoveredStep(null)}
+                whileHover={{ 
+                  x: 8,
+                  transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                viewport={{ once: true, margin: "-100px" }}
+                tabIndex={0}
+                role="button"
+                aria-label={`Step ${step.number}: ${step.title}`}
               >
                 {/* Step Number Circle */}
                 <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-primary relative z-10">
-                    <span className="text-2xl font-bold font-heading licorice-text">{step.number}</span>
-                  </div>
+                  <motion.div 
+                    className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-primary relative z-10 group-hover:shadow-xl group-hover:shadow-primary/20"
+                    variants={numberCircleVariants}
+                    whileHover="hover"
+                  >
+                    <motion.span 
+                      className="text-2xl font-bold font-heading licorice-text"
+                      animate={isHovered ? { 
+                        color: ["#20000C", "#E49B0F", "#20000C"],
+                        transition: { duration: 1, repeat: Infinity }
+                      } : {}}
+                    >
+                      {step.number}
+                    </motion.span>
+                  </motion.div>
                   
                   {/* Connecting Arrow */}
                   {!isLast && (
-                    <div className="w-0.5 h-12 bg-primary/30 mt-4 relative">
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-primary/30"></div>
-                    </div>
+                    <motion.div 
+                      className="w-0.5 h-12 bg-primary/30 mt-4 relative origin-top"
+                      variants={arrowVariants}
+                    >
+                      <motion.div 
+                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-primary/30"
+                        animate={isHovered ? {
+                          borderTopColor: ["rgba(228, 155, 15, 0.3)", "rgba(228, 155, 15, 0.8)", "rgba(228, 155, 15, 0.3)"],
+                          transition: { duration: 1.5, repeat: Infinity }
+                        } : {}}
+                      />
+                    </motion.div>
                   )}
                 </div>
 
                 {/* Step Content */}
-                <div className="flex-1 pt-2">
+                <motion.div 
+                  className="flex-1 pt-2"
+                  variants={contentVariants}
+                >
                   <div className="flex items-center gap-3 mb-3">
-                    <Icon className="w-6 h-6 text-primary" />
-                    <h3 className="heading-tertiary licorice-text">
+                    <motion.div
+                      variants={iconVariants}
+                      whileHover="hover"
+                      animate={isHovered ? "pulse" : {}}
+                    >
+                      <Icon className="w-6 h-6 text-primary" />
+                    </motion.div>
+                    <motion.h3 
+                      className="heading-tertiary licorice-text"
+                      animate={isHovered ? {
+                        color: ["#20000C", "#E49B0F"],
+                        transition: { duration: 0.3 }
+                      } : {}}
+                    >
                       {step.title}
-                    </h3>
+                    </motion.h3>
                   </div>
                   
-                  <p className="text-lg body-text licorice-text/80 leading-relaxed mb-4">
+                  <motion.p 
+                    className="text-lg body-text licorice-text/80 leading-relaxed mb-4"
+                    animate={isHovered ? {
+                      color: ["rgba(32, 0, 12, 0.8)", "rgba(32, 0, 12, 1)"],
+                      transition: { duration: 0.3 }
+                    } : {}}
+                  >
                     {step.description}
-                  </p>
+                  </motion.p>
 
-                 
-                </div>
+                  {/* Subtle progress indicator */}
+                  <motion.div 
+                    className="h-1 bg-primary/10 rounded-full overflow-hidden"
+                    initial={{ width: 0 }}
+                    animate={isHovered ? { width: "100%" } : { width: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                  >
+                    <motion.div 
+                      className="h-full bg-primary rounded-full"
+                      initial={{ x: "-100%" }}
+                      animate={isHovered ? { x: "0%" } : { x: "-100%" }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                    />
+                  </motion.div>
+                </motion.div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     );
   }
