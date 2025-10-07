@@ -12,34 +12,34 @@ interface LeftVisualProps {
 const LeftVisual = forwardRef<HTMLDivElement, LeftVisualProps>(
   ({ barsRef, headingRef, subtextRef }, ref) => {
     return (
-      <div ref={ref} className="relative flex flex-col justify-between">
-        {/* Top Area - Animated Bars with Background Image */}
-        <div className="relative h-96 mb-8">
-          {/* Background Image */}
+      <div ref={ref} className="relative">
+        {/* Fluid Layout - Bars extending from top */}
+        <div className="relative h-[500px] mb-8">
+          {/* Background Image - Full container */}
           <div className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-2xl background-image" />
           
-          {/* Animated Bars */}
-          <div className="bars-container">
+          {/* Large Bars - Starting from top, extending down */}
+          <div className="absolute top-0 left-0 w-full h-full flex items-start justify-start gap-4 p-8">
             <div
               ref={el => { barsRef.current[0] = el; }}
-              className="bar-1"
+              className="bar-large-1"
             />
             <div
               ref={el => { barsRef.current[1] = el; }}
-              className="bar-2"
+              className="bar-large-2"
             />
             <div
               ref={el => { barsRef.current[2] = el; }}
-              className="bar-3"
+              className="bar-large-3"
             />
           </div>
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#20000C]/20 to-transparent rounded-2xl" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#20000C]/30 to-transparent rounded-2xl" />
         </div>
 
-        {/* Bottom Area - Text Content */}
-        <div className="space-y-4">
+        {/* Text Content - Positioned below bars with proper spacing */}
+        <div className="space-y-4 relative z-10">
           <motion.h2
             ref={headingRef}
             className="text-4xl lg:text-5xl font-bold text-[#E49B0F] leading-tight"

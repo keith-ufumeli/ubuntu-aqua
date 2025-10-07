@@ -34,23 +34,26 @@ export const useHowItWorksAnimation = () => {
         }
       });
 
-      // Simple entrance animations
+      // Animate bars growing from top
       const bars = barsRef.current.filter(Boolean);
       const textElements = [headingRef.current, subtextRef.current].filter(Boolean);
       const cards = cardsRef.current.filter(Boolean);
 
       // Set initial states
-      gsap.set([...bars, ...textElements, ...cards], { 
+      gsap.set(bars, { 
+        height: 0,
+        transformOrigin: 'top'
+      });
+      gsap.set([...textElements, ...cards], { 
         opacity: 0, 
         y: 30 
       });
 
-      // Animate elements in sequence
+      // Animate bars growing from top
       tl.to(bars, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.1,
+        height: '100%',
+        duration: 1.2,
+        stagger: 0.2,
         ease: 'power2.out'
       })
       .to(textElements, {
@@ -59,14 +62,14 @@ export const useHowItWorksAnimation = () => {
         duration: 0.6,
         stagger: 0.1,
         ease: 'power2.out'
-      }, 0.2)
+      }, 0.3)
       .to(cards, {
         opacity: 1,
         y: 0,
         duration: 0.6,
         stagger: 0.1,
         ease: 'power2.out'
-      }, 0.4);
+      }, 0.5);
 
     }, sectionRef);
 

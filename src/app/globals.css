@@ -270,28 +270,81 @@
   }
 
   /* How It Works - New Design Styles */
-  .bars-container {
-    @apply absolute inset-0 flex items-end justify-start gap-2 p-6;
-  }
-
-  .bar-1 {
-    @apply w-8 bg-[#20000C] rounded-t-lg shadow-lg;
+  .bar-large-1 {
+    @apply bg-[#20000C] rounded-t-lg shadow-lg;
+    width: 150px;
     height: 85%;
+    background-image: url('/images/african-woman-standing-on-seashore.jpg');
+    background-size: cover;
+    background-position: left center;
+    background-clip: padding-box;
+    -webkit-mask: linear-gradient(to bottom, black 0%, black 100%);
+    mask: linear-gradient(to bottom, black 0%, black 100%);
   }
 
-  .bar-2 {
-    @apply w-8 bg-[#20000C] rounded-t-lg shadow-lg;
+  .bar-large-2 {
+    @apply bg-[#20000C] rounded-t-lg shadow-lg;
+    width: 150px;
     height: 70%;
+    background-image: url('/images/african-woman-standing-on-seashore.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-clip: padding-box;
+    -webkit-mask: linear-gradient(to bottom, black 0%, black 100%);
+    mask: linear-gradient(to bottom, black 0%, black 100%);
   }
 
-  .bar-3 {
-    @apply w-8 bg-[#20000C] rounded-t-lg shadow-lg;
+  .bar-large-3 {
+    @apply bg-[#20000C] rounded-t-lg shadow-lg;
+    width: 150px;
     height: 55%;
+    background-image: url('/images/african-woman-standing-on-seashore.jpg');
+    background-size: cover;
+    background-position: right center;
+    background-clip: padding-box;
+    -webkit-mask: linear-gradient(to bottom, black 0%, black 100%);
+    mask: linear-gradient(to bottom, black 0%, black 100%);
   }
 
   .background-image {
     background-image: url('/images/african-woman-standing-on-seashore.jpg');
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* Bento Box Layout - Fluid widths like a real bento box */
+  .bento-container {
+    @apply space-y-4;
+  }
+
+  .bento-row-1 {
+    @apply flex gap-4;
+  }
+
+  .bento-row-2 {
+    @apply flex gap-4;
+  }
+
+  .bento-card-large {
+    @apply flex-1;
+    height: 280px;
+  }
+
+  .bento-card-small {
+    @apply flex-1;
+    height: 200px;
+  }
+
+  /* Responsive bento layout */
+  @media (max-width: 768px) {
+    .bento-row-1,
+    .bento-row-2 {
+      @apply flex-col;
+    }
+    
+    .bento-card-large,
+    .bento-card-small {
+      height: 200px;
+    }
   }
 
   /* Enhanced animations for How It Works section */
