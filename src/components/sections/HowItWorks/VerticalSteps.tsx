@@ -36,17 +36,17 @@ const processSteps = [
 ];
 
 const features = [
-  { text: 'Real-time monitoring in 50+ locations', color: 'bg-orange-100 text-orange-800' },
-  { text: 'AI-powered predictive analytics', color: 'bg-blue-100 text-blue-800' },
-  { text: 'Automated alert systems', color: 'bg-purple-100 text-purple-800' },
-  { text: 'Community health protection', color: 'bg-pink-100 text-pink-800' }
+  { text: 'Real-time monitoring in 50+ locations', color: 'bg-[#E49B0F]/10 text-[#E49B0F] border border-[#E49B0F]/20' },
+  { text: 'AI-powered predictive analytics', color: 'bg-[#20000C]/10 text-[#20000C] border border-[#20000C]/20' },
+  { text: 'Automated alert systems', color: 'bg-[#E49B0F]/10 text-[#E49B0F] border border-[#E49B0F]/20' },
+  { text: 'Community health protection', color: 'bg-[#20000C]/10 text-[#20000C] border border-[#20000C]/20' }
 ];
 
 const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
   ({ stepsRef }, ref) => {
     return (
       <div ref={ref} className="pt-20">
-        <div className="space-y-12">
+        <div className="space-y-8">
           {processSteps.map((step, index) => {
             const Icon = step.icon;
             const isLast = index === processSteps.length - 1;
@@ -66,14 +66,14 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
               >
                 {/* Step Number Circle */}
                 <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-[#E49B0F] relative z-10">
-                    <span className="text-2xl font-bold text-[#20000C]">{step.number}</span>
+                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-primary relative z-10">
+                    <span className="text-2xl font-bold font-heading licorice-text">{step.number}</span>
                   </div>
                   
                   {/* Connecting Arrow */}
                   {!isLast && (
-                    <div className="w-0.5 h-12 bg-gray-300 mt-4 relative">
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-300"></div>
+                    <div className="w-0.5 h-12 bg-primary/30 mt-4 relative">
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-primary/30"></div>
                     </div>
                   )}
                 </div>
@@ -81,23 +81,23 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                 {/* Step Content */}
                 <div className="flex-1 pt-2">
                   <div className="flex items-center gap-3 mb-3">
-                    <Icon className="w-6 h-6 text-[#E49B0F]" />
-                    <h3 className="text-2xl font-bold text-[#20000C] leading-tight">
+                    <Icon className="w-6 h-6 text-primary" />
+                    <h3 className="heading-tertiary licorice-text">
                       {step.title}
                     </h3>
                   </div>
                   
-                  <p className="text-lg text-gray-600 leading-relaxed mb-4">
+                  <p className="text-lg body-text licorice-text/80 leading-relaxed mb-4">
                     {step.description}
                   </p>
 
                   {/* Features for the last step */}
-                  {isLast && (
+                  {/* {isLast && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
                       {features.map((feature, featureIndex) => (
                         <motion.div
                           key={featureIndex}
-                          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${feature.color}`}
+                          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium font-body ${feature.color}`}
                           initial={{ opacity: 0, scale: 0.9 }}
                           whileInView={{ 
                             opacity: 1, 
@@ -111,7 +111,7 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                         </motion.div>
                       ))}
                     </div>
-                  )}
+                  )} */}
                 </div>
               </motion.div>
             );
