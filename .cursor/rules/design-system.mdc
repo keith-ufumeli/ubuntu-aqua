@@ -1,0 +1,162 @@
+---
+alwaysApply: true
+description: Design system guidelines for typography and colors
+---
+
+# Design System Guidelines
+
+## Typography System
+
+### Font Families
+- **Headings**: Always use `font-heading` class (Poppins font family)
+- **Body text**: Always use `font-body` class (Inter font family)
+- **Custom fonts**: Use `font-chillax` for special cases only
+
+### Typography Classes
+Use these predefined classes instead of custom styling:
+
+```tsx
+// Headings
+<h1 className="heading-primary">Main Title</h1>
+<h2 className="heading-secondary">Section Title</h2>
+<h3 className="heading-tertiary">Subsection Title</h3>
+
+// Body text
+<p className="body-text">Regular paragraph text</p>
+<p className="text-large">Larger body text</p>
+<span className="text-emphasis">Emphasized text</span>
+<span className="brand-text">Brand/accent text</span>
+```
+
+### Text Sizes
+- **Primary headings**: `text-4xl lg:text-5xl` or `heading-primary`
+- **Secondary headings**: `text-2xl lg:text-3xl` or `heading-secondary`
+- **Tertiary headings**: `text-xl lg:text-2xl` or `heading-tertiary`
+- **Body text**: `text-lg` or `text-large`
+- **Small text**: `text-sm` or `text-base`
+
+## Color System
+
+### Primary Colors
+- **Gamboge (Primary)**: `#E49B0F` - Use `text-primary`, `bg-primary`, `border-primary`
+- **Licorice (Secondary)**: `#20000C` - Use `licorice-text`, `licorice-background`
+- **Antique White (Background)**: `#FAEBD7` - Use `antique-white-text`, `bg-background`
+
+### Color Classes
+Always use these predefined color classes:
+
+```tsx
+// Text colors
+<span className="text-primary">Gamboge text</span>
+<span className="licorice-text">Dark text</span>
+<span className="antique-white-text">Light text</span>
+<span className="gamboge-text">Accent text</span>
+
+// Background colors
+<div className="bg-primary">Gamboge background</div>
+<div className="licorice-background">Dark background</div>
+<div className="gamboge-background">Accent background</div>
+
+// Border colors
+<div className="border-primary">Gamboge border</div>
+```
+
+### Color Usage Guidelines
+- **Primary actions**: Use `text-primary` or `bg-primary`
+- **Secondary content**: Use `licorice-text` or `text-foreground`
+- **Backgrounds**: Use `bg-background` for main backgrounds
+- **Accents**: Use `text-primary` for highlights and CTAs
+- **Muted text**: Use `text-foreground/80` or `licorice-text/80`
+
+## Component Patterns
+
+### Buttons
+```tsx
+// Primary button
+<button className="bg-primary text-primary-foreground font-heading font-semibold px-6 py-3 rounded-lg">
+  Primary Action
+</button>
+
+// Secondary button
+<button className="border border-primary text-primary font-heading font-semibold px-6 py-3 rounded-lg">
+  Secondary Action
+</button>
+```
+
+### Cards
+```tsx
+<div className="bg-card text-card-foreground border border-border rounded-lg p-6">
+  <h3 className="heading-tertiary mb-3">Card Title</h3>
+  <p className="body-text">Card content</p>
+</div>
+```
+
+### Feature Badges
+```tsx
+// Use alternating brand colors for variety
+<div className="bg-primary/10 text-primary border border-primary/20 px-4 py-2 rounded-full text-sm font-body">
+  Feature Badge
+</div>
+```
+
+## Accessibility Requirements
+
+### Color Contrast
+- Ensure minimum 4.5:1 contrast ratio for normal text
+- Ensure minimum 3:1 contrast ratio for large text
+- Test with both light and dark backgrounds
+
+### Typography
+- Use semantic HTML elements (`h1`, `h2`, `p`, etc.)
+- Maintain proper heading hierarchy
+- Use `font-body` for readable body text
+
+## Common Anti-Patterns to Avoid
+
+❌ **Don't use hardcoded colors:**
+```tsx
+// Bad
+<span className="text-[#E49B0F]">Text</span>
+<div className="bg-[#20000C]">Background</div>
+
+// Good
+<span className="text-primary">Text</span>
+<div className="licorice-background">Background</div>
+```
+
+❌ **Don't use custom font sizes without classes:**
+```tsx
+// Bad
+<h2 className="text-3xl font-bold">Title</h2>
+
+// Good
+<h2 className="heading-secondary">Title</h2>
+```
+
+❌ **Don't mix font families:**
+```tsx
+// Bad
+<h1 className="font-sans text-4xl">Title</h1>
+
+// Good
+<h1 className="font-heading heading-primary">Title</h1>
+```
+
+## Implementation Checklist
+
+When creating new components:
+
+- [ ] Use `font-heading` for all headings
+- [ ] Use `font-body` for all body text
+- [ ] Use predefined color classes (`text-primary`, `licorice-text`, etc.)
+- [ ] Use typography classes (`heading-primary`, `body-text`, etc.)
+- [ ] Ensure proper color contrast ratios
+- [ ] Test with both light and dark themes
+- [ ] Use semantic HTML elements
+- [ ] Follow established component patterns
+
+## References
+
+- Typography classes defined in [globals.css](mdc:src/app/globals.css)
+- Color variables in CSS custom properties
+- Existing components in [components/](mdc:src/components/) for reference patterns

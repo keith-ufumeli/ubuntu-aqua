@@ -35,13 +35,6 @@ const processSteps = [
   }
 ];
 
-const features = [
-  { text: 'Real-time monitoring in 50+ locations', color: 'bg-[#E49B0F]/10 text-[#E49B0F] border border-[#E49B0F]/20' },
-  { text: 'AI-powered predictive analytics', color: 'bg-[#20000C]/10 text-[#20000C] border border-[#20000C]/20' },
-  { text: 'Automated alert systems', color: 'bg-[#E49B0F]/10 text-[#E49B0F] border border-[#E49B0F]/20' },
-  { text: 'Community health protection', color: 'bg-[#20000C]/10 text-[#20000C] border border-[#20000C]/20' }
-];
-
 const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
   ({ stepsRef }, ref) => {
     return (
@@ -91,27 +84,7 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                     {step.description}
                   </p>
 
-                  {/* Features for the last step */}
-                  {/* {isLast && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
-                      {features.map((feature, featureIndex) => (
-                        <motion.div
-                          key={featureIndex}
-                          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium font-body ${feature.color}`}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          whileInView={{ 
-                            opacity: 1, 
-                            scale: 1,
-                            transition: { duration: 0.4, delay: 0.5 + featureIndex * 0.1 }
-                          }}
-                          viewport={{ once: true }}
-                        >
-                          <Check className="w-4 h-4" />
-                          {feature.text}
-                        </motion.div>
-                      ))}
-                    </div>
-                  )} */}
+                 
                 </div>
               </motion.div>
             );
