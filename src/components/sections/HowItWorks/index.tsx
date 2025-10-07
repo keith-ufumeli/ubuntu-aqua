@@ -2,15 +2,15 @@
 
 import { useHowItWorksAnimation } from './useHowItWorksAnimation';
 import LeftVisual from './LeftVisual';
-import RightBento from './RightBento';
+import VerticalSteps from './VerticalSteps';
 
 export default function HowItWorks() {
   const {
     sectionRef,
     leftVisualRef,
-    rightBentoRef,
+    rightStepsRef,
     barsRef,
-    cardsRef,
+    stepsRef,
     headingRef,
     subtextRef
   } = useHowItWorksAnimation();
@@ -32,10 +32,10 @@ export default function HowItWorks() {
             subtextRef={subtextRef as React.RefObject<HTMLParagraphElement>}
           />
 
-          {/* Right Column - Bento Cards */}
-          <RightBento
-            ref={rightBentoRef}
-            cardsRef={cardsRef}
+          {/* Right Column - Vertical Steps */}
+          <VerticalSteps
+            ref={rightStepsRef}
+            stepsRef={stepsRef}
           />
         </div>
       </div>

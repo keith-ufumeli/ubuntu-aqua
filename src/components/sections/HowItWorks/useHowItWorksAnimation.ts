@@ -10,9 +10,9 @@ if (typeof window !== 'undefined') {
 export const useHowItWorksAnimation = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const leftVisualRef = useRef<HTMLDivElement>(null);
-  const rightBentoRef = useRef<HTMLDivElement>(null);
+  const rightStepsRef = useRef<HTMLDivElement>(null);
   const barsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
 
@@ -37,14 +37,14 @@ export const useHowItWorksAnimation = () => {
       // Animate bars growing from top
       const bars = barsRef.current.filter(Boolean);
       const textElements = [headingRef.current, subtextRef.current].filter(Boolean);
-      const cards = cardsRef.current.filter(Boolean);
+      const steps = stepsRef.current.filter(Boolean);
 
       // Set initial states
       gsap.set(bars, { 
         height: 0,
         transformOrigin: 'top'
       });
-      gsap.set([...textElements, ...cards], { 
+      gsap.set([...textElements, ...steps], { 
         opacity: 0, 
         y: 30 
       });
@@ -63,7 +63,7 @@ export const useHowItWorksAnimation = () => {
         stagger: 0.1,
         ease: 'power2.out'
       }, 0.3)
-      .to(cards, {
+      .to(steps, {
         opacity: 1,
         y: 0,
         duration: 0.6,
@@ -85,9 +85,9 @@ export const useHowItWorksAnimation = () => {
   const refs = {
     sectionRef,
     leftVisualRef,
-    rightBentoRef,
+    rightStepsRef,
     barsRef,
-    cardsRef,
+    stepsRef,
     headingRef,
     subtextRef
   };
