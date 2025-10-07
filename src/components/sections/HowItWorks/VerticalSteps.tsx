@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useState, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { motion, useInView, Variants } from 'framer-motion';
 import { Globe, Zap, TrendingUp, Shield } from 'lucide-react';
 
@@ -37,7 +37,6 @@ const processSteps = [
 
 const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
   ({ stepsRef }, ref) => {
-    const [hoveredStep, setHoveredStep] = useState<number | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
@@ -173,7 +172,6 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
           {processSteps.map((step, index) => {
             const Icon = step.icon;
             const isLast = index === processSteps.length - 1;
-            const isHovered = hoveredStep === index;
             
             return (
               <motion.div
@@ -181,8 +179,6 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                 ref={el => { stepsRef.current[index] = el; }}
                 className="relative flex items-start gap-6 group cursor-pointer step-container"
                 variants={stepVariants}
-                onHoverStart={() => setHoveredStep(index)}
-                onHoverEnd={() => setHoveredStep(null)}
                 whileHover={{ 
                   x: 8,
                   transition: { duration: 0.3, ease: "easeOut" }
@@ -200,10 +196,10 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                   >
                     <motion.span 
                       className="text-2xl font-bold font-heading licorice-text"
-                      animate={isHovered ? { 
-                        color: ["#20000C", "#E49B0F", "#20000C"],
-                        transition: { duration: 1, repeat: Infinity }
-                      } : {}}
+                      whileHover={{
+                        color: "#E49B0F",
+                        transition: { duration: 0.3, ease: "easeOut" }
+                      }}
                     >
                       {step.number}
                     </motion.span>
@@ -217,10 +213,10 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                     >
                       <motion.div 
                         className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-primary/30"
-                        animate={isHovered ? {
-                          borderTopColor: ["rgba(228, 155, 15, 0.3)", "rgba(228, 155, 15, 0.8)", "rgba(228, 155, 15, 0.3)"],
-                          transition: { duration: 1.5, repeat: Infinity }
-                        } : {}}
+                        whileHover={{
+                          borderTopColor: "rgba(228, 155, 15, 0.8)",
+                          transition: { duration: 0.3, ease: "easeOut" }
+                        }}
                       />
                     </motion.div>
                   )}
@@ -235,16 +231,15 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                     <motion.div
                       variants={iconVariants}
                       whileHover="hover"
-                      animate={isHovered ? "pulse" : {}}
                     >
                       <Icon className="w-6 h-6 text-primary" />
                     </motion.div>
                     <motion.h3 
                       className="heading-tertiary licorice-text"
-                      animate={isHovered ? {
-                        color: ["#20000C", "#E49B0F"],
-                        transition: { duration: 0.3 }
-                      } : {}}
+                      whileHover={{
+                        color: "#E49B0F",
+                        transition: { duration: 0.3, ease: "easeOut" }
+                      }}
                     >
                       {step.title}
                     </motion.h3>
@@ -252,10 +247,10 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                   
                   <motion.p 
                     className="text-lg body-text licorice-text/80 leading-relaxed mb-4"
-                    animate={isHovered ? {
-                      color: ["rgba(32, 0, 12, 0.8)", "rgba(32, 0, 12, 1)"],
-                      transition: { duration: 0.3 }
-                    } : {}}
+                    whileHover={{
+                      color: "rgba(32, 0, 12, 1)",
+                      transition: { duration: 0.3, ease: "easeOut" }
+                    }}
                   >
                     {step.description}
                   </motion.p>
@@ -264,13 +259,13 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                   <motion.div 
                     className="h-1 bg-primary/10 rounded-full overflow-hidden"
                     initial={{ width: 0 }}
-                    animate={isHovered ? { width: "100%" } : { width: 0 }}
+                    whileHover={{ width: "100%" }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   >
                     <motion.div 
                       className="h-full bg-primary rounded-full"
                       initial={{ x: "-100%" }}
-                      animate={isHovered ? { x: "0%" } : { x: "-100%" }}
+                      whileHover={{ x: "0%" }}
                       transition={{ duration: 0.5, ease: "easeOut" }}
                     />
                   </motion.div>
