@@ -268,5 +268,65 @@
     @apply transition-all duration-500;
     transform-style: preserve-3d;
   }
+
+  /* How It Works - New Design Styles */
+  .bars-container {
+    @apply absolute inset-0 flex items-end justify-start gap-2 p-6;
+  }
+
+  .bar-1 {
+    @apply w-8 bg-[#20000C] rounded-t-lg shadow-lg;
+    height: 85%;
+  }
+
+  .bar-2 {
+    @apply w-8 bg-[#20000C] rounded-t-lg shadow-lg;
+    height: 70%;
+  }
+
+  .bar-3 {
+    @apply w-8 bg-[#20000C] rounded-t-lg shadow-lg;
+    height: 55%;
+  }
+
+  .background-image {
+    background-image: url('/images/african-woman-standing-on-seashore.jpg');
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* Enhanced animations for How It Works section */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .shimmer-effect {
+    background: linear-gradient(90deg, transparent, rgba(228, 155, 15, 0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Performance optimizations */
+  .process-card,
+  .bar-1,
+  .bar-2,
+  .bar-3 {
+    will-change: transform, opacity;
+  }
+
+  /* Enhanced focus states for accessibility */
+  .process-card:focus-visible {
+    outline: 2px solid #E49B0F;
+    outline-offset: 2px;
+  }
 }
 
