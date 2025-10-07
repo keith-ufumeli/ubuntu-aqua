@@ -34,7 +34,7 @@ const processSteps = [
 const RightBento = forwardRef<HTMLDivElement, RightBentoProps>(
   ({ cardsRef }, ref) => {
     return (
-      <div ref={ref} className="">
+      <div ref={ref} className="pt-20">
         {/* Bento Box Layout - Fluid widths like a real bento box */}
         <div className="bento-container">
           {/* Row 1 - Large card on left, smaller on right */}

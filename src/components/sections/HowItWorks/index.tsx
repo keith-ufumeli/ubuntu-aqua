@@ -19,7 +19,7 @@ export default function HowItWorks() {
     <section 
       ref={sectionRef}
       id="how-it-works" 
-      className="bg-[#FAEBD7] px-4 sm:px-6 lg:px-8"
+      className="pb-20 bg-[#FAEBD7] px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         {/* 2-Column Grid Layout */}
