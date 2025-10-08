@@ -201,7 +201,7 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
               transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }
             }}
           >
-            How It Works
+            Our AI-Powered Process
           </motion.h2>
           
           <motion.p

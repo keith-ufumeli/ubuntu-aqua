@@ -50,7 +50,7 @@ const LeftVisual = forwardRef<HTMLDivElement, LeftVisualProps>(
             } : { opacity: 0, y: 30 }}
           >
             <h3 className="text-2xl font-heading font-semibold text-[#E49B0F] mb-3">
-              Protecting Communities
+              Safeguarding Communities
             </h3>
             <p className="text-lg licorice-text body-text leading-relaxed max-w-md">
               By combining advanced AI with local environmental data, we&apos;re creating a 

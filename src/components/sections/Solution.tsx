@@ -157,7 +157,7 @@ export default function Solution() {
         {/* Header */}
         <div ref={containerRef} className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 font-heading">
-            Our AI Solution
+            Intelligent Water Safety Platform
           </h2>
           <p className="text-xl antique-white-text max-w-3xl mx-auto body-text">
             Ubuntu Aqua uses advanced machine learning to analyze environmental data, 

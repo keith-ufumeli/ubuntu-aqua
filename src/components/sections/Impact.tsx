@@ -43,7 +43,7 @@ export default function Impact() {
             Impact Across Stakeholders
           </div>
           <h2 className="heading-primary mb-6 licorice-text">
-            Transforming Water Safety
+            Protecting Communities Through Innovation
           </h2>
           <p className="text-large body-text max-w-3xl mx-auto licorice-text/80">
             Ubuntu Aqua serves multiple stakeholders, each with unique needs and challenges, 
@@ -185,7 +185,7 @@ export default function Impact() {
                   <Target className="h-6 w-6" />
                 </div>
                 <div className="bento-header">Join the Mission</div>
-                <h3 className="bento-title">Ready to Transform Water Safety?</h3>
+                <h3 className="bento-title">Ready to Revolutionize Water Safety?</h3>
                 <p className="bento-description">
                   Join health officials, NGOs, and community leaders worldwide who are 
                   already using Ubuntu Aqua to protect their communities. Start your 
