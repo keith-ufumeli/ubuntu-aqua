@@ -1,13 +1,4 @@
-/* Font loading optimization */
-@font-face {
-  font-family: 'Inter';
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  font-display: swap;
-}
+/* Font loading optimization - These are handled by Next.js font optimization */
 
 /* Chillax font faces */
 @font-face {
@@ -31,6 +22,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-heading: var(--font-poppins);
+  --font-body: var(--font-chillax);
 }
 
 
@@ -107,7 +99,10 @@
 @layer components {
   /* Glassmorphism utilities */
   .glass {
-    @apply bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+    @apply bg-white/50 backdrop-blur-xl border border-white/30 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
   }
   
   .glass-dark {
@@ -132,24 +127,33 @@
   }
 
   .logo-chip {
-    @apply relative px-4 py-2 rounded-full bg-white/80 backdrop-blur-lg shadow-lg border border-white/30;
+    @apply relative px-4 py-2 rounded-full bg-white/90 backdrop-blur-lg shadow-lg border border-white/40;
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
   }
 
   .cta-button {
-    @apply relative overflow-hidden bg-gradient-to-r from-primary to-[#F5A91A] hover:from-[#F5A91A] hover:to-primary transition-all duration-500;
+    @apply relative overflow-hidden bg-gradient-to-r from-primary to-[#F5A91A] hover:from-[#F5A91A] hover:to-primary transition-all duration-500 text-white hover:text-white;
   }
 
   .cta-button::before {
     @apply content-[''] absolute inset-0 bg-gradient-to-r from-primary to-[#F5A91A] opacity-0 transition-opacity duration-500;
+    z-index: -1;
   }
 
   .cta-button:hover::before {
     @apply opacity-100;
   }
 
-  .nav-mobile-fab {
-    @apply fixed bottom-6 right-6 w-14 h-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center transition-all duration-300 md:hidden;
+  .cta-button:hover {
+    @apply text-white;
   }
+
+  .cta-button * {
+    @apply relative z-10;
+  }
+
 
   /* Progress bars */
   .progress-bar-95 {
