@@ -513,59 +513,67 @@
     }
   }
 
-  /* Bento Grid Layout Styles */
+  /* Refined Grid Structure - Stronger Alignment & Spacing */
   .bento-container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto;
-    gap: 1.75rem;
+    gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 2.5rem;
     align-items: start;
+    justify-items: stretch;
   }
 
-  /* Bento Item Positioning - Balanced Visual Hierarchy */
+  /* Strategic Card Positioning - Balanced Visual Weight Distribution */
   .bento-hero {
     grid-column: 1 / 7;
     grid-row: 1 / 3;
-    min-height: 420px;
+    min-height: 440px;
+    align-self: stretch;
   }
 
   .bento-feature {
     grid-column: 7 / 13;
     grid-row: 1 / 2;
-    min-height: 200px;
+    min-height: 210px;
+    align-self: stretch;
   }
 
   .bento-accent {
     grid-column: 7 / 13;
     grid-row: 2 / 3;
-    min-height: 200px;
+    min-height: 210px;
+    align-self: stretch;
   }
 
   .bento-wide {
     grid-column: 1 / 5;
     grid-row: 3 / 4;
-    min-height: 220px;
+    min-height: 240px;
+    align-self: stretch;
   }
 
   .bento-medium {
     grid-column: 5 / 9;
     grid-row: 3 / 4;
-    min-height: 220px;
+    min-height: 240px;
+    align-self: stretch;
   }
 
   .bento-tall {
     grid-column: 9 / 13;
     grid-row: 3 / 5;
-    min-height: 460px;
+    min-height: 500px;
+    align-self: stretch;
   }
 
   .bento-bottom {
     grid-column: 1 / 9;
     grid-row: 4 / 5;
-    min-height: 220px;
+    min-height: 240px;
+    align-self: stretch;
   }
 
   /* Bento Card Animations - Subtle and Refined */
@@ -598,36 +606,42 @@
     opacity: 1;
   }
 
-  /* Enhanced card variants - Balanced Visual Weight */
+  /* Deliberate Color Hierarchy - Strategic Visual Weight Distribution */
+  
+  /* Primary Hero - Strongest visual weight */
   .card-hero {
-    background: linear-gradient(135deg, rgba(228, 155, 15, 0.08) 0%, rgba(250, 235, 215, 0.3) 100%);
-    border: 1px solid rgba(228, 155, 15, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  }
-
-  .card-feature {
-    background: linear-gradient(135deg, rgba(32, 0, 10, 0.05) 0%, rgba(250, 235, 215, 0.2) 100%);
-    border: 1px solid rgba(32, 0, 10, 0.15);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-
-  .card-accent {
     background: linear-gradient(135deg, rgba(228, 155, 15, 0.12) 0%, rgba(250, 235, 215, 0.4) 100%);
     border: 1px solid rgba(228, 155, 15, 0.25);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 6px 20px rgba(228, 155, 15, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 
+  /* Secondary Accent - Medium visual weight */
+  .card-accent {
+    background: linear-gradient(135deg, rgba(228, 155, 15, 0.08) 0%, rgba(250, 235, 215, 0.3) 100%);
+    border: 1px solid rgba(228, 155, 15, 0.2);
+    box-shadow: 0 4px 12px rgba(228, 155, 15, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Tertiary Feature - Subtle visual weight */
+  .card-feature {
+    background: linear-gradient(135deg, rgba(32, 0, 10, 0.06) 0%, rgba(250, 235, 215, 0.25) 100%);
+    border: 1px solid rgba(32, 0, 10, 0.12);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Neutral Minimal - Lightest visual weight */
   .card-minimal {
-    background: rgba(250, 235, 215, 0.4);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    background: rgba(250, 235, 215, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   }
 
+  /* Contrast Dark - Strategic focal point */
   .card-dark {
-    background: linear-gradient(135deg, rgba(32, 0, 10, 0.85) 0%, rgba(32, 0, 10, 0.9) 100%);
-    border: 1px solid rgba(228, 155, 15, 0.3);
+    background: linear-gradient(135deg, rgba(32, 0, 10, 0.88) 0%, rgba(32, 0, 10, 0.92) 100%);
+    border: 1px solid rgba(228, 155, 15, 0.35);
     color: white;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(228, 155, 15, 0.08);
   }
 
   /* Enhanced bento card styling */
@@ -648,15 +662,44 @@
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(228, 155, 15, 0.08);
   }
 
-  /* Card content styling - Consistent Typography */
+  /* Card content styling - Standardized Padding & Typography */
   .bento-content {
-    padding: 2rem;
+    padding: 2.5rem;
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
     position: relative;
     z-index: 2;
+  }
+
+  /* Standardized padding for all card types */
+  .bento-hero .bento-content {
+    padding: 3rem;
+  }
+
+  .bento-feature .bento-content {
+    padding: 2.5rem;
+  }
+
+  .bento-accent .bento-content {
+    padding: 2.5rem;
+  }
+
+  .bento-wide .bento-content {
+    padding: 2.5rem;
+  }
+
+  .bento-medium .bento-content {
+    padding: 2.5rem;
+  }
+
+  .bento-tall .bento-content {
+    padding: 2.75rem;
+  }
+
+  .bento-bottom .bento-content {
+    padding: 2.5rem;
   }
 
   .bento-header {
@@ -719,104 +762,104 @@
     border-radius: 16px;
   }
 
-  /* Responsive bento adjustments */
+  /* Responsive Grid Adjustments - Maintained Structure */
   @media (max-width: 1200px) {
     .bento-container {
       grid-template-columns: repeat(8, 1fr);
-      gap: 1.5rem;
-      padding: 0 1.5rem;
+      gap: 1.75rem;
+      padding: 0 2rem;
     }
 
     .bento-hero {
       grid-column: 1 / 5;
       grid-row: 1 / 3;
-      min-height: 380px;
+      min-height: 400px;
     }
 
     .bento-feature {
       grid-column: 5 / 9;
       grid-row: 1 / 2;
-      min-height: 180px;
+      min-height: 190px;
     }
 
     .bento-accent {
       grid-column: 5 / 9;
       grid-row: 2 / 3;
-      min-height: 180px;
+      min-height: 190px;
     }
 
     .bento-wide {
       grid-column: 1 / 4;
       grid-row: 3 / 4;
-      min-height: 200px;
+      min-height: 220px;
     }
 
     .bento-medium {
       grid-column: 4 / 7;
       grid-row: 3 / 4;
-      min-height: 200px;
+      min-height: 220px;
     }
 
     .bento-tall {
       grid-column: 7 / 9;
       grid-row: 3 / 5;
-      min-height: 420px;
+      min-height: 460px;
     }
 
     .bento-bottom {
       grid-column: 1 / 7;
       grid-row: 4 / 5;
-      min-height: 200px;
+      min-height: 220px;
     }
   }
 
   @media (max-width: 768px) {
     .bento-container {
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
-      padding: 0 1rem;
+      gap: 1.5rem;
+      padding: 0 1.25rem;
     }
 
     .bento-hero {
       grid-column: 1 / 5;
       grid-row: 1 / 2;
-      min-height: 320px;
+      min-height: 340px;
     }
 
     .bento-feature {
       grid-column: 1 / 3;
       grid-row: 2 / 3;
-      min-height: 220px;
+      min-height: 240px;
     }
 
     .bento-accent {
       grid-column: 3 / 5;
       grid-row: 2 / 3;
-      min-height: 220px;
+      min-height: 240px;
     }
 
     .bento-wide {
       grid-column: 1 / 3;
       grid-row: 3 / 4;
-      min-height: 200px;
+      min-height: 220px;
     }
 
     .bento-medium {
       grid-column: 3 / 5;
       grid-row: 3 / 4;
-      min-height: 200px;
+      min-height: 220px;
     }
 
     .bento-tall {
       grid-column: 1 / 3;
       grid-row: 4 / 6;
-      min-height: 380px;
+      min-height: 400px;
     }
 
     .bento-bottom {
       grid-column: 3 / 5;
       grid-row: 4 / 6;
-      min-height: 380px;
+      min-height: 400px;
     }
 
     .bento-hero .bento-title {
@@ -824,15 +867,23 @@
     }
 
     .bento-content {
-      padding: 1.5rem;
+      padding: 2rem;
+    }
+
+    .bento-hero .bento-content {
+      padding: 2.5rem;
+    }
+
+    .bento-tall .bento-content {
+      padding: 2.25rem;
     }
   }
 
   @media (max-width: 480px) {
     .bento-container {
       grid-template-columns: 1fr;
-      gap: 1.25rem;
-      padding: 0 0.75rem;
+      gap: 1.5rem;
+      padding: 0 1rem;
     }
 
     .bento-hero,
@@ -844,7 +895,7 @@
     .bento-bottom {
       grid-column: 1;
       grid-row: auto;
-      min-height: 280px;
+      min-height: 300px;
     }
 
     .bento-hero .bento-title {
@@ -852,7 +903,15 @@
     }
 
     .bento-content {
-      padding: 1.5rem;
+      padding: 2rem;
+    }
+
+    .bento-hero .bento-content {
+      padding: 2.5rem;
+    }
+
+    .bento-tall .bento-content {
+      padding: 2.25rem;
     }
   }
 
