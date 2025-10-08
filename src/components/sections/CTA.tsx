@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Download, Sparkles } from 'lucide-react';
-import WaterParticles from '@/components/ui/WaterParticles';
 
 export default function CTA() {
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden">
+      {/* Seamless transition element */}
+      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-b from-transparent to-licorice-background pointer-events-none"></div>
       {/* Water Particles Background */}
       {/* <div className="absolute inset-0 z-10">
         <WaterParticles
