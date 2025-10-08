@@ -287,7 +287,7 @@
   .bar-large-2 {
     @apply bg-[#20000C] shadow-xl;
     width: 150px;
-    height: 90%;
+    height: 95%;
     background: linear-gradient(135deg, #20000C 0%, #2D0014 50%, #20000C 100%);
     background-size: cover;
     background-position: 50% 50%;
@@ -301,7 +301,7 @@
   .bar-large-3 {
     @apply bg-[#20000C] shadow-xl;
     width: 150px;
-    height: 80%;
+    height: 90%;
     background: linear-gradient(135deg, #20000C 0%, #2D0014 50%, #20000C 100%);
     background-size: cover;
     background-position: 100% 50%;
@@ -342,6 +342,46 @@
     background: rgba(228, 155, 15, 0.02);
     transform: translateX(4px);
     box-shadow: 0 4px 20px rgba(228, 155, 15, 0.1);
+  }
+
+  /* Enhanced visual flow for simplified interaction */
+  .step-container {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .step-container:hover {
+    transform: translateX(6px) translateY(-2px);
+  }
+
+  /* Smooth slide-in animation for steps */
+  .step-container {
+    will-change: transform, opacity;
+  }
+
+  /* Enhanced scroll-based interactions */
+  .step-container {
+    transform-origin: right center;
+  }
+
+  /* Improved step spacing for scroll reveals */
+  .step-container + .step-container {
+    margin-top: 2rem;
+  }
+
+  /* Better visual feedback for scroll reveals */
+  .step-container[data-animate="true"] {
+    animation: slideInFromRight 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
   }
 
   /* Enhanced visual flow indicators */

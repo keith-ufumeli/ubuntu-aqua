@@ -44,14 +44,26 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
-    // Enhanced animation variants with delayed entry for right column
+    // Individual step scroll triggers
+    const step1Ref = useRef<HTMLDivElement>(null);
+    const step2Ref = useRef<HTMLDivElement>(null);
+    const step3Ref = useRef<HTMLDivElement>(null);
+    const step4Ref = useRef<HTMLDivElement>(null);
+    
+    const step1InView = useInView(step1Ref, { once: true, margin: "-20% 0px -20% 0px" });
+    const step2InView = useInView(step2Ref, { once: true, margin: "-20% 0px -20% 0px" });
+    const step3InView = useInView(step3Ref, { once: true, margin: "-20% 0px -20% 0px" });
+    const step4InView = useInView(step4Ref, { once: true, margin: "-20% 0px -20% 0px" });
+    const stepInView = [step1InView, step2InView, step3InView, step4InView];
+    const stepRefsArray = [step1Ref, step2Ref, step3Ref, step4Ref];
+
+    // Enhanced animation variants with scroll-triggered reveals
     const containerVariants: Variants = {
       hidden: { opacity: 0 },
       visible: {
         opacity: 1,
         transition: {
-          staggerChildren: 0.2,
-          delayChildren: 0.8, // Delayed to follow left column
+          duration: 0.3,
         },
       },
     };
@@ -59,23 +71,21 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
     const stepVariants: Variants = {
       hidden: {
         opacity: 0,
-        y: 50,
-        x: 30,
-        scale: 0.9,
-        filter: "blur(2px)",
+        x: 100,
+        y: 0,
+        scale: 0.95,
       },
       visible: {
         opacity: 1,
-        y: 0,
         x: 0,
+        y: 0,
         scale: 1,
-        filter: "blur(0px)",
         transition: {
-          duration: 0.8,
+          duration: 0.7,
           ease: [0.25, 0.46, 0.45, 0.94],
           type: "spring",
-          stiffness: 80,
-          damping: 20,
+          stiffness: 100,
+          damping: 15,
         },
       },
     };
@@ -179,7 +189,35 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
     };
 
     return (
-      <div ref={ref} className="pt-20">
+      <div ref={ref} className="pt-8">
+        {/* Section Header */}
+        <div className="mb-12">
+          <motion.h2
+            className="text-4xl lg:text-5xl font-bold text-[#E49B0F] leading-tight mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ 
+              opacity: 1, 
+              y: 0,
+              transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }
+            }}
+          >
+            How It Works
+          </motion.h2>
+          
+          <motion.p
+            className="text-lg licorice-text body-text leading-relaxed max-w-md"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ 
+              opacity: 1, 
+              y: 0,
+              transition: { duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }
+            }}
+          >
+            Our AI-powered system transforms environmental data into actionable insights, 
+            enabling proactive water quality protection across Zimbabwe.
+          </motion.p>
+        </div>
+
         <motion.div
           ref={containerRef}
           className="space-y-8"
@@ -190,15 +228,21 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
           {processSteps.map((step, index) => {
             const Icon = step.icon;
             const isLast = index === processSteps.length - 1;
+            const isStepInView = stepInView[index];
 
             return (
               <motion.div
                 key={step.number}
                 ref={(el) => {
                   stepsRef.current[index] = el;
+                  if (stepRefsArray[index]) {
+                    stepRefsArray[index].current = el;
+                  }
                 }}
-                className="relative flex items-start gap-6 group cursor-pointer step-container"
+                className="relative flex items-start group cursor-pointer step-container"
                 variants={stepVariants}
+                initial="hidden"
+                animate={isStepInView ? "visible" : "hidden"}
                 whileHover={{
                   x: 8,
                   transition: { duration: 0.3, ease: "easeOut" },
@@ -210,7 +254,7 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                 {/* Step Number Circle */}
                 <div className="flex flex-col items-center">
                   <motion.div
-                    className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-primary relative z-10 group-hover:shadow-xl group-hover:shadow-primary/20"
+                    className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-primary relative z-10 group-hover:shadow-xl group-hover:shadow-primary/20"
                     variants={numberCircleVariants}
                     whileHover="hover"
                   >
