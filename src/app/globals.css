@@ -469,4 +469,47 @@
     outline: 2px solid #E49B0F;
     outline-offset: 2px;
   }
+
+  /* Grid pattern for Impact section */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(32, 0, 10, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(32, 0, 10, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 0;
+  }
+
+  .grid-pattern-subtle {
+    background-image: 
+      linear-gradient(rgba(32, 0, 10, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(32, 0, 10, 0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 0 0;
+    opacity: 0.6;
+  }
+
+  /* Enhanced grid pattern for better visibility */
+  .grid-pattern-enhanced {
+    background-image: 
+      linear-gradient(rgba(32, 0, 10, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(32, 0, 10, 0.12) 1px, transparent 1px);
+    background-size: 45px 45px;
+    background-position: 0 0, 0 0;
+    opacity: 0.4;
+  }
+
+  /* Responsive grid pattern adjustments */
+  @media (max-width: 768px) {
+    .grid-pattern-enhanced {
+      background-size: 35px 35px;
+      opacity: 0.5;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .grid-pattern-enhanced {
+      background-size: 30px 30px;
+      opacity: 0.4;
+    }
+  }
 }
