@@ -269,70 +269,110 @@
     transform-style: preserve-3d;
   }
 
-  /* How It Works - Enhanced Design Styles */
+  /* How It Works - Enhanced Design Styles with Visual Hierarchy */
   .bar-large-1 {
-    @apply bg-[#20000C] shadow-lg;
+    @apply bg-[#20000C] shadow-xl;
     width: 150px;
     height: 100%;
-    /* background-image: url('/images/bar-bg-1.jpg'); */
+    background: linear-gradient(135deg, #20000C 0%, #2D0014 50%, #20000C 100%);
     background-size: cover;
     background-position: 0% 50%;
     background-clip: padding-box;
     -webkit-mask: linear-gradient(to bottom, black 0%, black 100%);
     mask: linear-gradient(to bottom, black 0%, black 100%);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(32, 0, 12, 0.3);
   }
 
   .bar-large-2 {
-    @apply bg-[#20000C] shadow-lg;
+    @apply bg-[#20000C] shadow-xl;
     width: 150px;
     height: 90%;
-    /* background-image: url('/images/bar-bg-1.jpg'); */
+    background: linear-gradient(135deg, #20000C 0%, #2D0014 50%, #20000C 100%);
     background-size: cover;
     background-position: 50% 50%;
     background-clip: padding-box;
     -webkit-mask: linear-gradient(to bottom, black 0%, black 100%);
     mask: linear-gradient(to bottom, black 0%, black 100%);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(32, 0, 12, 0.3);
   }
 
   .bar-large-3 {
-    @apply bg-[#20000C] shadow-lg;
+    @apply bg-[#20000C] shadow-xl;
     width: 150px;
     height: 80%;
-    /* background-image: url('/images/bar-bg-1.jpg'); */
+    background: linear-gradient(135deg, #20000C 0%, #2D0014 50%, #20000C 100%);
     background-size: cover;
     background-position: 100% 50%;
     background-clip: padding-box;
     -webkit-mask: linear-gradient(to bottom, black 0%, black 100%);
     mask: linear-gradient(to bottom, black 0%, black 100%);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(32, 0, 12, 0.3);
   }
 
-  /* Ensure bars maintain consistent dark licorice color */
+  /* Enhanced visual emphasis for bars */
   .bar-large-1,
   .bar-large-2,
   .bar-large-3 {
     opacity: 1 !important;
     background-color: #20000C !important;
+    transition: all 0.3s ease;
   }
 
-  /* Enhanced step animations */
+  .bar-large-1:hover,
+  .bar-large-2:hover,
+  .bar-large-3:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(32, 0, 12, 0.4);
+  }
+
+  /* Enhanced step animations with visual hierarchy */
   .step-container {
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 8px 0;
   }
 
+  .step-container:hover {
+    background: rgba(228, 155, 15, 0.02);
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(228, 155, 15, 0.1);
+  }
+
+  /* Enhanced visual flow indicators */
   .step-container::before {
     content: '';
     position: absolute;
+    left: -8px;
     top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(228, 155, 15, 0.1), transparent);
-    transition: left 0.6s ease;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, rgba(228, 155, 15, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   .step-container:hover::before {
-    left: 100%;
+    opacity: 1;
+  }
+
+  /* Visual hierarchy animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .visual-flow-indicator {
+    animation: fadeIn 0.5s ease-out 1.5s forwards;
   }
 
   /* Smooth scroll behavior */
