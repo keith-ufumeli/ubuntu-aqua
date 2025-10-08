@@ -336,6 +336,7 @@
     border-radius: 12px;
     padding: 16px;
     margin: 8px 0;
+    gap: 2rem; /* Ensure consistent gap between circle and content */
   }
 
   .step-container:hover {

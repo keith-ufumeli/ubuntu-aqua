@@ -239,7 +239,7 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                     stepRefsArray[index].current = el;
                   }
                 }}
-                className="relative flex items-start group cursor-pointer step-container"
+                className="relative flex items-start gap-8 group cursor-pointer step-container"
                 variants={stepVariants}
                 initial="hidden"
                 animate={isStepInView ? "visible" : "hidden"}
@@ -287,7 +287,7 @@ const VerticalSteps = forwardRef<HTMLDivElement, VerticalStepsProps>(
                 </div>
 
                 {/* Step Content */}
-                <motion.div className="flex-1 pt-2" variants={contentVariants}>
+                <motion.div className="flex-1 pt-1" variants={contentVariants}>
                   <div className="flex items-center gap-3 mb-3">
                     <motion.div variants={iconVariants} whileHover="hover">
                       <Icon className="w-6 h-6 text-primary" />
