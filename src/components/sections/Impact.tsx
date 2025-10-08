@@ -156,15 +156,15 @@ export default function Impact() {
                 <div className="mt-6 space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm antique-white-text/80 font-body">Prevention Rate</span>
-                    <span className="text-2xl font-bold gamboge-text">95%</span>
+                    <span className="text-2xl font-bold font-heading gamboge-text">95%</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm antique-white-text/80 font-body">Response Time</span>
-                    <span className="text-2xl font-bold gamboge-text">72h</span>
+                    <span className="text-2xl font-bold font-heading gamboge-text">72h</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm antique-white-text/80 font-body">Communities Served</span>
-                    <span className="text-2xl font-bold gamboge-text">500+</span>
+                    <span className="text-2xl font-bold font-heading gamboge-text">500+</span>
                   </div>
                 </div>
               </CardContent>
