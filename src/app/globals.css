@@ -427,12 +427,6 @@
     outline-offset: 4px;
     border-radius: 8px;
   }
-
-  .background-image {
-    background-image: url('/images/african-woman-standing-on-seashore.jpg');
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-
  
 
   /* Enhanced animations for How It Works section */
@@ -495,7 +489,7 @@
       linear-gradient(90deg, rgba(32, 0, 10, 0.12) 1px, transparent 1px);
     background-size: 45px 45px;
     background-position: 0 0, 0 0;
-    opacity: 0.4;
+    opacity: 0.6;
   }
 
   /* Responsive grid pattern adjustments */
@@ -612,35 +606,36 @@
   .card-hero {
     background: linear-gradient(135deg, rgba(228, 155, 15, 0.12) 0%, rgba(250, 235, 215, 0.4) 100%);
     border: 1px solid rgba(228, 155, 15, 0.25);
-    box-shadow: 0 6px 20px rgba(228, 155, 15, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06);
+    /* box-shadow: 0 6px 20px rgba(228, 155, 15, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06) !important; */
   }
 
   /* Secondary Accent - Medium visual weight */
   .card-accent {
     background: linear-gradient(135deg, rgba(228, 155, 15, 0.08) 0%, rgba(250, 235, 215, 0.3) 100%);
     border: 1px solid rgba(228, 155, 15, 0.2);
-    box-shadow: 0 4px 12px rgba(228, 155, 15, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 12px rgba(228, 155, 15, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
   }
 
   /* Tertiary Feature - Subtle visual weight */
   .card-feature {
     background: linear-gradient(135deg, rgba(32, 0, 10, 0.06) 0%, rgba(250, 235, 215, 0.25) 100%);
     border: 1px solid rgba(32, 0, 10, 0.12);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05) !important;
   }
 
   /* Neutral Minimal - Lightest visual weight */
   .card-minimal {
     background: rgba(250, 235, 215, 0.35);
     border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
   }
 
   /* Contrast Dark - Strategic focal point */
   .card-dark {
     background: linear-gradient(135deg, rgba(32, 0, 10, 0.88) 0%, rgba(32, 0, 10, 0.92) 100%);
     border: 1px solid rgba(228, 155, 15, 0.35);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(228, 155, 15, 0.08);
+    color: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(228, 155, 15, 0.08) !important;
   }
 
   /* Enhanced bento card styling */
@@ -654,6 +649,7 @@
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 
   .bento-item:hover .card {

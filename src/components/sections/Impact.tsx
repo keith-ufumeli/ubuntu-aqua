@@ -67,6 +67,12 @@ export default function Impact() {
                   enabling proactive public health interventions and resource allocation 
                   before crises occur.
                 </p>
+                <p className="bento-description">
+                  Our AI-powered system continuously monitors water quality indicators, 
+                  environmental factors, and historical data patterns to deliver accurate 
+                  predictions that help protect communities and save lives through 
+                  early intervention strategies.
+                </p>
               </CardContent>
             </Card>
           </div>
